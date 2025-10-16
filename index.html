@@ -22,7 +22,7 @@
     .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
     .dot { width: 8px; height: 8px; border-radius: 9999px; border: 1px solid rgb(148 163 184); }
 
-    /* Inputs: consistent mobile-first sizing */
+    /* Consistent input styling (great on mobile) */
     .input {
       width: 100%;
       min-height: 46px;
@@ -31,6 +31,7 @@
       padding: 0.625rem 0.75rem;
     }
     .input:focus { outline: none; box-shadow: 0 0 0 4px var(--ring); }
+    .label-one-line { line-height: 1.25rem; height: 1.25rem; display:block; }
 
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -180,7 +181,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-6">
-          <!-- ✅ ROI Calculator now lives here ABOVE Retail Sales Forecast -->
+          <!-- ✅ ROI Calculator ABOVE Retail Sales Forecast -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="roi-card">
             <div class="p-6 md:p-8">
               <h3 class="font-semibold text-lg">ROI Calculator</h3>
@@ -190,19 +191,19 @@
 
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <label class="block">
-                  <span class="text-sm font-medium">Expected Gain (G)</span>
+                  <span class="text-sm font-medium label-one-line">Expected Gain (G)</span>
                   <input id="roi_gain" type="number" inputmode="decimal" placeholder="e.g. 10000" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Upfront Cost</span>
+                  <span class="text-sm font-medium label-one-line">Upfront Cost</span>
                   <input id="roi_upfront" type="number" inputmode="decimal" placeholder="e.g. 6000" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Monthly Cost</span>
+                  <span class="text-sm font-medium label-one-line">Monthly Cost</span>
                   <input id="roi_monthly" type="number" inputmode="decimal" placeholder="e.g. 25" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Months</span>
+                  <span class="text-sm font-medium label-one-line">Months</span>
                   <input id="roi_months" type="number" inputmode="numeric" placeholder="e.g. 12" class="input" />
                 </label>
               </div>
@@ -246,27 +247,30 @@
               <!-- Perfectly aligned inputs -->
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
                 <label class="block">
-                  <span class="text-sm font-medium">Open time</span>
+                  <span class="text-sm font-medium label-one-line">Open time</span>
                   <input id="sf_open" type="time" value="09:00" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Current time</span>
+                  <span class="text-sm font-medium label-one-line">Current time</span>
                   <input id="sf_now" type="time" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Close time</span>
+                  <span class="text-sm font-medium label-one-line">Close time</span>
                   <input id="sf_close" type="time" value="21:00" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Current sales ($)</span>
+                  <span class="text-sm font-medium label-one-line">Current sales ($)</span>
                   <input id="sf_sales" type="number" inputmode="decimal" placeholder="e.g. 306446.64" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Current transactions</span>
+                  <span class="text-sm font-medium label-one-line">Current transactions</span>
                   <input id="sf_tx" type="number" inputmode="numeric" placeholder="e.g. 5459" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Daily target ($) — optional</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm font-medium label-one-line">Daily target ($)</span>
+                    <span class="text-xs text-slate-500">(optional)</span>
+                  </div>
                   <input id="sf_target" type="number" inputmode="decimal" placeholder="e.g. 40000" class="input" />
                 </label>
               </div>
@@ -294,7 +298,7 @@
                 </div>
               </div>
 
-              <!-- Goal progress (shown only if target provided) -->
+              <!-- Goal progress (only when target is set) -->
               <div id="sf_goal_wrap" class="mt-4 hidden">
                 <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
                   <span>Goal progress</span>
@@ -319,30 +323,48 @@
               <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
               <p class="mt-2 text-sm text-slate-600">Estimate expected duration and uncertainty. Enter optimistic, most likely, and pessimistic values.</p>
 
+              <!-- Inputs -->
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <label class="block">
-                  <span class="text-sm font-medium">Optimistic (O)</span>
+                  <span class="text-sm font-medium label-one-line">Optimistic (O)</span>
                   <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Most likely (M)</span>
+                  <span class="text-sm font-medium label-one-line">Most likely (M)</span>
                   <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input" />
                 </label>
                 <label class="block">
-                  <span class="text-sm font-medium">Pessimistic (P)</span>
+                  <span class="text-sm font-medium label-one-line">Pessimistic (P)</span>
                   <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input" />
                 </label>
+              </div>
+
+              <!-- Quick risk presets -->
+              <div class="mt-3 flex flex-wrap items-center gap-2">
+                <span class="text-xs text-slate-500">Quick risk:</span>
+                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="low">Low</button>
+                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="med">Med</button>
+                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="high">High</button>
               </div>
 
               <div class="mt-5">
                 <button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Estimate time</button>
               </div>
 
+              <!-- Outputs -->
               <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div><div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div><div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">90% range</div><div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div></div>
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Signal</div><div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
+              </div>
+
+              <!-- Plain-English summary + copy -->
+              <div class="mt-4 rounded-xl border border-slate-200 p-3 bg-slate-50 flex items-start justify-between gap-3">
+                <div id="tpe_summary" class="text-sm text-slate-700">
+                  Enter O/M/P to see an easy summary.
+                </div>
+                <button id="tpe_copy" type="button" class="shrink-0 rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs">Copy</button>
               </div>
 
               <details class="mt-6 group">
@@ -358,7 +380,8 @@
     <!-- Live Portfolio Impact -->
     <section id="live-portfolio-impact" class="relative overflow-hidden py-16 sm:py-20">
       <div class="pointer-events-none absolute inset-0 -z-10">
-        <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-rose-500/10 via-rose-400/10 to-red-600/10 blur-3xl"></div>
+        <!-- Cool blue glow (not red) -->
+        <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-sky-400/15 via-cyan-400/10 to-blue-600/10 blur-3xl"></div>
       </div>
 
       <div class="mx-auto max-w-6xl px-6">
@@ -534,7 +557,10 @@
     ['mouseenter','focusin','touchstart','pointerdown'].forEach(evt => testCard.addEventListener(evt, stopAuto, {passive:true}));
     ['mouseleave','focusout','touchend','pointerup'].forEach(evt => testCard.addEventListener(evt, startAuto, {passive:true}));
     testCard.setAttribute('tabindex', '0');
-    testCard.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { next(); restartAuto(); } if (e.key === 'ArrowLeft') { prev(); restartAuto(); }});
+    testCard.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); restartAuto(); }
+      if (e.key === 'ArrowLeft') { prev(); restartAuto(); }
+    });
     let startX=null;
     testCard.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
     testCard.addEventListener('touchend', (e) => { if (startX===null) return; const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx)>40) { dx<0?next():prev(); restartAuto(); } startX=null; }, {passive:true});
@@ -716,7 +742,7 @@
         $('sf_steps').textContent = steps;
       }
 
-      // Bind: respond instantly on input for perfect UX
+      // Bind: respond instantly on input
       ['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -732,7 +758,7 @@
         calc();
       });
 
-      // Auto-set current time on load for better first-run behavior
+      // Auto-set current time on load
       (function initNow(){
         const now = new Date();
         const hh = String(now.getHours()).padStart(2,'0');
@@ -741,7 +767,7 @@
       })();
     })();
 
-    // ===== Three-Point Estimating (PERT) =====
+    // ===== Three-Point Estimating (PERT) with presets & summary =====
     (function(){
       const $ = (id) => document.getElementById(id);
       const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -756,6 +782,7 @@
           $('tpe_ci').textContent = '0.00–0.00';
           $('tpe_signal').textContent = 'Enter valid estimates (P should be ≥ O)';
           $('tpe_steps').textContent = '';
+          summarize();
           return;
         }
         const E = (O + 4*M + P) / 6;
@@ -766,7 +793,7 @@
         $('tpe_e').textContent = nfNum.format(E);
         $('tpe_sd').textContent = nfNum.format(SD);
         $('tpe_ci').textContent = `${nfNum.format(low)}–${nfNum.format(high)}`;
-        $('tpe_signal').textContent = SD / E < 0.25 ? 'Tight estimate' : 'Wide estimate';
+        $('tpe_signal').textContent = SD / (E || 1) < 0.25 ? 'Tight estimate' : 'Wide estimate';
 
         const steps = [
           `Expected E = (O + 4M + P) ÷ 6 = (${O} + 4×${M} + ${P}) ÷ 6 = ${nfNum.format(E)}`,
@@ -774,12 +801,58 @@
           `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(1.645*SD)} = ${nfNum.format(low)} to ${nfNum.format(high)}`
         ].join('\n');
         $('tpe_steps').textContent = steps;
+        summarize();
       }
 
-      document.getElementById('tpe_calc_btn')?.addEventListener('click', calc);
+      // Plain-English summary + copy
+      function summarize(){
+        const O = Number($('tpe_o').value || 0);
+        const M = Number($('tpe_m').value || 0);
+        const P = Number($('tpe_p').value || 0);
+        const sEl = $('tpe_summary');
+        if (!O || !M || !P || P < O) {
+          sEl.textContent = 'Enter valid O/M/P (P should be ≥ O).';
+          return;
+        }
+        const E = (O + 4*M + P) / 6;
+        const SD = (P - O) / 6;
+        const low = E - 1.645 * SD, high = E + 1.645 * SD;
+        const buffer = Math.max(0, high - M);
+        sEl.textContent =
+          `Plan ~${nfNum.format(E)} (expected). 90% range: ${nfNum.format(low)}–${nfNum.format(high)}. ` +
+          `Use a buffer of ~${nfNum.format(buffer)} beyond your most likely.`;
+      }
+
+      // Event bindings
       ['tpe_o','tpe_m','tpe_p'].forEach(id=>{
         const el = document.getElementById(id); if(!el) return;
         ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
+      });
+      document.getElementById('tpe_calc_btn')?.addEventListener('click', calc);
+
+      // Risk presets: set P relative to M, set O to ~80% of M if empty
+      function applyPreset(level){
+        const mEl = $('tpe_m'), oEl = $('tpe_o'), pEl = $('tpe_p');
+        const M = Number(mEl.value || 0) || 5;
+        if (!oEl.value) oEl.value = Math.max(0, (0.8 * M)).toFixed(2);
+        let factor = 1.3; // low
+        if (level === 'med') factor = 1.6;
+        if (level === 'high') factor = 2.0;
+        pEl.value = (M * factor).toFixed(2);
+        calc();
+      }
+      document.querySelectorAll('[data-risk]').forEach(btn=>{
+        btn.addEventListener('click', ()=> applyPreset(btn.getAttribute('data-risk')));
+      });
+
+      // Copy summary
+      const copyBtn = document.getElementById('tpe_copy');
+      copyBtn?.addEventListener('click', ()=>{
+        const text = document.getElementById('tpe_summary').textContent || '';
+        navigator.clipboard.writeText(text).then(()=>{
+          copyBtn.textContent = 'Copied';
+          setTimeout(()=> copyBtn.textContent = 'Copy', 1200);
+        });
       });
     })();
   </script>
