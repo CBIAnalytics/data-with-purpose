@@ -20,7 +20,6 @@
     .card { border: 1px solid rgba(0,0,0,.06); transition: transform .2s ease, box-shadow .2s ease; }
     .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
     .dot { width: 8px; height: 8px; border-radius: 9999px; border: 1px solid rgb(148 163 184); }
-    /* Consistent inputs */
     .input { width: 100%; min-height: 46px; border-radius: 0.75rem; border: 1px solid rgb(203 213 225); padding: 0.625rem 0.75rem; }
     .input:focus { outline: none; box-shadow: 0 0 0 4px var(--ring); }
     .label-one-line { line-height: 1.25rem; height: 1.25rem; display:block; }
@@ -139,7 +138,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-6">
-          <!-- ROI Calculator (placed ABOVE forecast) -->
+          <!-- ROI Calculator (above forecast) -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="roi-card">
             <div class="p-6 md:p-8">
               <h3 class="font-semibold text-lg">ROI Calculator</h3>
@@ -164,13 +163,13 @@
             </div>
           </article>
 
-          <!-- Retail Sales Forecast Calculator (no green live badge) -->
+          <!-- Retail Sales Forecast Calculator -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="forecast-card">
             <div class="p-6 md:p-8">
               <h3 class="font-semibold text-lg">Retail Sales Forecast Calculator</h3>
               <p class="mt-2 text-sm text-slate-600">Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.</p>
 
-              <!-- Perfectly aligned inputs including optional target -->
+              <!-- Aligned inputs with optional target -->
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
                 <label class="block"><span class="text-sm font-medium label-one-line">Open time</span><input id="sf_open" type="time" value="09:00" class="input"/></label>
                 <label class="block"><span class="text-sm font-medium label-one-line">Current time</span><input id="sf_now" type="time" class="input"/></label>
@@ -224,7 +223,9 @@
           <!-- Three-Point Estimating (PERT/Triangular) -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
             <div class="p-6 md:p-8">
-              <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
+              </div>
               <p class="mt-2 text-sm text-slate-700">
                 Not sure how long something will really take? PERT helps you make a smart estimate by considering
                 <strong>best case</strong> (Optimistic), <strong>most likely</strong>, and <strong>worst case</strong> (Pessimistic).
@@ -635,7 +636,7 @@
       })();
     })();
 
-    // ===== Three-Point Estimating (PERT/Triangular) — robust bindings & seeding =====
+    // ===== Three-Point Estimating (PERT/Triangular) — robust & bug-free =====
     document.addEventListener('DOMContentLoaded', function () {
       const $ = (id) => document.getElementById(id);
       const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -695,6 +696,7 @@
         calc();
       }
 
+      // Bindings
       ['tpe_o','tpe_m','tpe_p','tpe_unit','tpe_method'].forEach(id => {
         const el = $(id); if (!el) return;
         ['input','change','blur'].forEach(evt => el.addEventListener(evt, calc));
