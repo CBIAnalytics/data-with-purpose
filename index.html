@@ -3,40 +3,795 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CBI Analytics — Data with Purpose</title>
-  <meta name="description" content="CBI Analytics — Reinventing revenue operations through data, AI, and design." />
+  <title>Mia Lavana — Portfolio</title>
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { primary: '#7C3AED', accent: '#F000B8', ink: '#0B0B0F' } } } };</script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio site for Mia Lavana — operator, educator, creator." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Inter, sans-serif; background:#0B0B0F; color:white; }
-    .glass { backdrop-filter: blur(10px) saturate(180%); background: rgba(20,20,25,0.55); }
-    .gbar { background: linear-gradient(90deg, #F000B8 0%, #7C3AED 50%, #00E5FF 100%); }
+    :root { --ring: rgb(59 130 246 / 0.35); }
     html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, sans-serif; }
+    .glass { background: rgba(255,255,255,.75); backdrop-filter: blur(12px); }
+    .hero-gradient { background: radial-gradient(900px 420px at 80% -10%, rgba(59,130,246,.18), rgba(255,255,255,0)), linear-gradient(to bottom, #fff, #f8fafc 60%, #fff); }
+    .card { border: 1px solid rgba(0,0,0,.06); transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
+    .tag { border: 1px solid rgba(0,0,0,.08); }
+    .dot { width: 8px; height: 8px; border-radius: 9999px; border: 1px solid rgb(148 163 184); }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
-<body class="selection:bg-primary/40">
-  <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
-    <div class="gbar h-1 w-full"></div>
-    <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-6">
-      <a href="#home" class="font-black text-xl">CBI<span class="text-accent">Analytics</span></a>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#about" class="hover:text-accent">About</a>
-        <a href="#solutions" class="hover:text-accent">Solutions</a>
-        <a href="#work" class="hover:text-accent">Case Studies</a>
-        <a href="#contact" class="hover:text-accent">Contact</a>
-      </nav>
+<body class="text-slate-800">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 bg-white px-3 py-2 rounded-md shadow">Skip to content</a>
+
+  <!-- Header -->
+  <header class="fixed top-0 inset-x-0 z-50 glass">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#home" class="font-extrabold tracking-tight text-xl">Mia<span class="text-blue-600">Lavana</span></a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#about" class="hover:text-blue-600">About</a>
+          <a href="#portfolio" class="hover:text-blue-600">Portfolio</a>
+          <a href="#tools" class="hover:text-blue-600">Tools</a>
+          <a href="#live-portfolio-impact" class="hover:text-blue-600">Live Impact</a>
+          <a href="#contact" class="hover:text-blue-600">Contact</a>
+          <a href="#testimonials" class="hover:text-blue-600">Testimonials</a>
+        </nav>
+
+        <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 text-white text-sm font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Get in touch</a>
+
+        <!-- Mobile menu button -->
+        <button id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu panel -->
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <nav class="grid gap-2 text-base font-medium pt-2">
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#about">About</a>
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#portfolio">Portfolio</a>
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#tools">Tools</a>
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#live-portfolio-impact">Live Impact</a>
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#contact">Contact</a>
+          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#testimonials">Testimonials</a>
+          <a class="mt-2 inline-flex items-center justify-center rounded-2xl bg-blue-600 px-4 py-3 text-white font-semibold shadow-md hover:shadow-lg" href="#contact">Get in touch</a>
+        </nav>
+      </div>
     </div>
   </header>
-  <section id="home" class="pt-32 text-center px-6">
-    <h1 class="text-5xl sm:text-6xl font-black leading-tight">Data with <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-cyan-400">Purpose</span></h1>
-    <p class="mt-4 text-lg text-white/70 max-w-2xl mx-auto">At CBI Analytics, we transform messy multi-market data into decisions — building systems that lift revenue, compress costs, and scale compliance.</p>
-  </section>
-  <footer class="border-t border-white/10 bg-black/30 py-10 text-center text-sm text-white/50">
-    <p>© <span id="year"></span> CBI Analytics — Data with Purpose. All rights reserved.</p>
-  </footer>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero-gradient pt-24 md:pt-32 pb-16 md:pb-20">
+      <div class="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">Smarter systems. Real results.</h1>
+          <p class="mt-4 text-base sm:text-lg text-slate-700">
+            Experience intelligent tools that drive growth. Explore my interactive portfolio to see real working demos that enhance sales performance, forecasting, and ROI visibility. Here’s a free taste. For the full platform with automation, integrations, and executive reporting, <a href="#contact" class="text-blue-600 font-semibold">request a demo →</a>.
+          </p>
+          <div class="mt-6 sm:mt-8 flex items-center gap-3">
+            <a href="#portfolio" class="rounded-2xl border border-slate-300 px-4 py-2.5 font-semibold hover:border-slate-400">Explore portfolio</a>
+            <a href="#tools" class="rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Try the tools</a>
+          </div>
+        </div>
+        <div class="relative order-first md:order-none">
+          <div class="absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-tr from-blue-100 to-transparent"></div>
+          <img
+            src="mia-headshot.jpg"
+            alt="Mia Lavana headshot"
+            class="rounded-3xl w-full h-[380px] sm:h-[420px] md:h-[520px] object-cover shadow-2xl"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16 md:py-20 bg-white">
+      <div class="mx-auto max-w-5xl px-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold">About</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed text-[15px] sm:text-base">
+          I believe great businesses start with intention, a clear “why” that guides every system, story, and strategy.
+          My work lives at the intersection of culture and commerce: creating experiences that engage, elevate, and deliver outcomes.
+          Whether in retail, hospitality, or technology, I focus on building value that outlasts trends and translates across industries.
+        </p>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-16 md:py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold">Portfolio</h2>
+        <p class="text-slate-600 text-[15px] sm:text-base mt-2">Explore my interactive portfolio tools. These are free demos that showcase how I help businesses grow smarter. Pro versions add integrations, automation, and executive reporting. <a href="#contact" class="text-blue-600 font-medium">Request a demo →</a></p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <!-- Executive Sales Dashboards -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
+            <img
+              src="https://lets-viz.com/wp-content/uploads/2024/05/SPD-.png"
+              alt="Executive Sales Dashboards"
+              class="w-full h-44 object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-6">
+              <h3 class="font-semibold">Executive Sales Dashboards</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Make smarter moves faster with real-time revenue views and vendor insights that drive confident decisions.
+              </p>
+              <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">Request a demo →</a>
+            </div>
+          </article>
+
+          <!-- Consultative Sales & Compliance Training -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
+            <img
+              src="https://media.istockphoto.com/id/1588288383/photo/back-view-of-student-raising-his-hand-to-answer-teachers-question-during-education-training.jpg?s=612x612&w=0&k=20&c=ZSyPrLqe6WdE81WXiESD5AqIVw1a7hKv85UI5I-Vwco="
+              alt="Consultative Sales & Compliance Training"
+              class="w-full h-44 object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-6">
+              <h3 class="font-semibold">Consultative Sales & Compliance Training</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Fuel performance with frameworks that merge product mastery and consultative selling. Always sharp, always compliant.
+              </p>
+              <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">View syllabus →</a>
+            </div>
+          </article>
+
+          <!-- Brand & Go-to-Market -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
+            <img
+              src="https://hbr.org/resources/images/article_assets/2022/10/CRE3220_HBRAS_thumb.png"
+              alt="Brand & Go-to-Market"
+              class="w-full h-44 object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="p-6">
+              <h3 class="font-semibold">Brand & Go-to-Market</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Turn strategy into momentum with data-driven storytelling that builds brands people believe in.
+              </p>
+              <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">See case study →</a>
+            </div>
+          </article>
+
+          <!-- ✅ ROI Calculator (interactive card) -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden md:col-span-3" id="roi-card">
+            <div class="p-6 md:p-8">
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <h3 class="font-semibold text-lg">ROI Calculator</h3>
+                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
+                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm text-slate-600">
+                ROI = (G − C) ÷ C × 100, where G is expected gain and C is total cost. Total cost = Upfront + (Monthly × Months).
+              </p>
+
+              <div class="mt-5 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <label class="block">
+                  <span class="text-sm font-medium">Expected Gain (G)</span>
+                  <input id="roi_gain" type="number" inputmode="decimal" placeholder="e.g. 10000"
+                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+
+                <label class="block">
+                  <span class="text-sm font-medium">Upfront Cost</span>
+                  <input id="roi_upfront" type="number" inputmode="decimal" placeholder="e.g. 6000"
+                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+
+                <label class="block">
+                  <span class="text-sm font-medium">Monthly Cost</span>
+                  <input id="roi_monthly" type="number" inputmode="decimal" placeholder="e.g. 25"
+                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+
+                <label class="block">
+                  <span class="text-sm font-medium">Months</span>
+                  <input id="roi_months" type="number" inputmode="numeric" placeholder="e.g. 12"
+                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+              </div>
+
+              <div class="mt-5">
+                <button type="button" id="roi_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+                  Calculate ROI
+                </button>
+              </div>
+
+              <div id="roi_output" class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Total Cost (C)</div>
+                  <div id="roi_total_cost" class="mt-1 text-2xl font-extrabold tabular-nums">$0.00</div>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">ROI</div>
+                  <div id="roi_percent" class="mt-1 text-2xl font-extrabold tabular-nums">0.00%</div>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Signal</div>
+                  <div id="roi_signal" class="mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-semibold border border-slate-300 text-slate-700 bg-white">
+                    Enter values to evaluate
+                  </div>
+                </div>
+              </div>
+
+              <details class="mt-6 group">
+                <summary class="cursor-pointer text-sm text-slate-600 group-open:text-slate-800 font-medium">Show calculation steps</summary>
+                <pre id="roi_steps" class="mt-3 bg-slate-50 rounded-xl p-4 text-[13px] overflow-x-auto border border-slate-200"></pre>
+              </details>
+            </div>
+          </article>
+          <!-- End ROI card -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools / Calculators -->
+    <section id="tools" class="py-16 md:py-20 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-6 flex items-center justify-between flex-wrap gap-3">
+          <h2 class="text-2xl sm:text-3xl font-extrabold">ROI & Forecast Calculators</h2>
+          <a href="#contact" class="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Request a demo</a>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6">
+          <!-- Sales Forecast Calculator -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="forecast-card">
+            <div class="p-6 md:p-8">
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <h3 class="font-semibold text-lg">Retail Sales Forecast Calculator</h3>
+                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
+                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.</p>
+
+              <div class="mt-5 grid grid-cols-1 md:grid-cols-5 gap-4">
+                <label class="block">
+                  <span class="text-sm font-medium">Open time</span>
+                  <input id="sf_open" type="time" value="09:00" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Current time</span>
+                  <input id="sf_now" type="time" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Close time</span>
+                  <input id="sf_close" type="time" value="21:00" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Current sales ($)</span>
+                  <input id="sf_sales" type="number" inputmode="decimal" placeholder="e.g. 306446.64" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Current transactions</span>
+                  <input id="sf_tx" type="number" inputmode="numeric" placeholder="e.g. 5459" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+              </div>
+
+              <div class="mt-5 flex items-center gap-3">
+                <button type="button" id="sf_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Forecast day</button>
+                <button type="button" id="sf_now_btn" class="rounded-2xl border border-slate-300 px-5 py-2.5 font-semibold hover:border-slate-400">Use current local time</button>
+              </div>
+
+              <div id="sf_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Elapsed hours</div><div id="sf_elapsed" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Remaining hours</div><div id="sf_remaining" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Avg ticket</div><div id="sf_avg_ticket" class="mt-1 text-2xl font-extrabold tabular-nums">$0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Tx per hour</div><div id="sf_tph" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
+              </div>
+
+              <div id="sf_output2" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Projected transactions</div><div id="sf_proj_tx" class="mt-1 text-2xl font-extrabold tabular-nums">0</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Projected sales</div><div id="sf_proj_sales" class="mt-1 text-2xl font-extrabold tabular-nums">$0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Confidence note</div><div id="sf_note" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
+              </div>
+
+              <details class="mt-6 group">
+                <summary class="cursor-pointer text-sm text-slate-600 group-open:text-slate-800 font-medium">Show calculation steps</summary>
+                <pre id="sf_steps" class="mt-3 bg-slate-50 rounded-xl p-4 text-[13px] overflow-x-auto border border-slate-200"></pre>
+              </details>
+            </div>
+          </article>
+
+          <!-- Three-Point Estimating (PERT) -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
+            <div class="p-6 md:p-8">
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
+                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
+                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Estimate expected duration and uncertainty. Enter optimistic, most likely, and pessimistic values.</p>
+
+              <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <label class="block">
+                  <span class="text-sm font-medium">Optimistic (O)</span>
+                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Most likely (M)</span>
+                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Pessimistic (P)</span>
+                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
+              </div>
+
+              <div class="mt-5">
+                <button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Estimate time</button>
+              </div>
+
+              <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div><div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div><div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">90% range</div><div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Signal</div><div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
+              </div>
+
+              <details class="mt-6 group">
+                <summary class="cursor-pointer text-sm text-slate-600 group-open:text-slate-800 font-medium">Show calculation steps</summary>
+                <pre id="tpe_steps" class="mt-3 bg-slate-50 rounded-xl p-4 text-[13px] overflow-x-auto border border-slate-200"></pre>
+              </details>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Portfolio Impact (refined) -->
+    <section id="live-portfolio-impact" class="relative overflow-hidden py-16 sm:py-20">
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-500/15 via-sky-400/10 to-blue-600/10 blur-3xl"></div>
+      </div>
+
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="mb-8 flex items-center gap-3">
+          <span class="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.8)]"></span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Live Portfolio Impact</h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <div class="relative rounded-2xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-md text-center">
+            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"></div>
+
+            <p class="mb-4 text-sm uppercase tracking-widest text-white/60">Cumulative Impact</p>
+
+            <!-- Counter (centered, animated) -->
+            <div class="live-counter text-4xl sm:text-5xl md:text-6xl font-extrabold tabular-nums tracking-tight text-white"
+                aria-live="polite"
+                data-start="120045320"
+                data-rate-per-day="45000"
+                data-decimals="2"
+                data-prefix="$"
+                data-suffix="">
+              $120,045,320.00
+            </div>
+
+            <!-- Live badge with red blinking dot -->
+            <div class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/80">
+              <span class="inline-block h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
+              <span>Live</span>
+            </div>
+
+            <p class="mt-5 max-w-prose mx-auto text-sm leading-relaxed text-white/80">
+              All data reflects aggregated directional impact across current initiatives and projects.
+            </p>
+
+            <!-- micro legend (Method removed) -->
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-white/70">
+              <span class="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Data source: internal aggregate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 md:py-20 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold">Let’s build something</h2>
+        <p class="mt-3 text-slate-600">Email <a class="text-blue-600 font-medium" href="mailto:contact@mialavana.com">contact@mialavana.com</a> or drop a line below.</p>
+        <form class="mt-8 grid gap-4 text-left" action="#" method="post">
+          <label class="sr-only" for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Name" autocomplete="name" inputmode="text" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+          <label class="sr-only" for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Message" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]"></textarea>
+          <button type="button" class="rounded-2xl bg-blue-600 px-6 py-3 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Send</button>
+        </form>
+        <p class="mt-4 text-sm text-slate-500">Or connect on <a class="text-blue-600" href="https://www.linkedin.com/">LinkedIn</a> • <a class="text-blue-600" href="https://github.com/">GitHub</a> • <a class="text-blue-600" href="https://www.instagram.com/">Instagram</a></p>
+      </div>
+    </section>
+
+    <!-- Testimonials (single-card carousel) -->
+    <section id="testimonials" class="py-16 md:py-20 bg-white">
+      <div class="mx-auto max-w-4xl px-4">
+        <div class="flex items-end justify-between gap-4">
+          <h2 class="text-2xl sm:text-3xl font-extrabold">Testimonials</h2>
+          <div class="hidden md:flex items-center gap-2">
+            <button id="prevTest" class="rounded-xl border border-slate-300 px-3 py-2 hover:bg-slate-50" aria-label="Previous testimonial">◀</button>
+            <button id="nextTest" class="rounded-xl border border-slate-300 px-3 py-2 hover:bg-slate-50" aria-label="Next testimonial">▶</button>
+          </div>
+        </div>
+
+        <!-- Single card holder -->
+        <div class="mt-6">
+          <figure id="testCard" class="card rounded-2xl bg-white p-6 md:p-8">
+            <blockquote id="testQuote" class="text-slate-700 text-[15px] md:text-base leading-relaxed"></blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <img id="testAvatar" src="" alt="" class="w-12 h-12 rounded-full object-cover">
+              <div>
+                <div id="testName" class="font-semibold text-sm"></div>
+                <div id="testTitle" class="text-xs text-slate-500"></div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Dots -->
+          <div class="mt-5 flex items-center justify-center gap-2" id="testDots" aria-label="testimonial pagination"></div>
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500 text-center">Auto-rotates every 6s • Swipe on mobile • Pauses on hover/touch</p>
+      </div>
+    </section>
+
+    <footer class="py-10 text-center text-sm text-slate-500 pb-24 md:pb-10 bg-white">
+      © <span id="year"></span> Mia Lavana — All rights reserved.
+    </footer>
+
+    <!-- Sticky mobile action bar -->
+    <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-slate-200">
+      <div class="mx-auto max-w-6xl px-4 py-2 flex items-center gap-3" style="padding-bottom: calc(env(safe-area-inset-bottom) + 8px);">
+        <a href="#portfolio" class="flex-1 inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-3 font-semibold">Portfolio</a>
+        <a href="#tools" class="flex-1 inline-flex items-center justify-center rounded-2xl border border-slate-300 px-4 py-3 font-semibold">Tools</a>
+        <a href="#contact" class="flex-1 inline-flex items-center justify-center rounded-2xl bg-blue-600 px-4 py-3 text-white font-semibold shadow-md">Contact</a>
+      </div>
+    </div>
+  </main>
+
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }));
+    }
+
+    // --- Testimonials: single-card carousel ---
+    const testimonials = [
+      {
+        quote: "“Mia, to me, represents 'Mamba Mentality.' We equate those who think, or perhaps, not the most vocal, as a weakness. As the Black Mamba, she knows when to go in and say the things that need to be told. When you combine her acumen to lean in with compassion, it's a deadly mix of effectiveness + execution.”",
+        name: "Mike Kim",
+        title: "Founder & Creative Director, Some Near Place",
+        avatar: "https://media.licdn.com/dms/image/v2/D4D03AQHv-Si9Nox4yA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1664979704907?e=1762992000&v=beta&t=3W69JupXZ784QtXyBqs4_5vsWOIFh4eyt3aZofCZuoY"
+      },
+      {
+        quote: "“Mia is highly skilled at managing and studying metrics data to determine ROI across campaigns and to identify opportunities for improvement. Her marketing analytics gave us profound insight into customer preferences and trends. A pleasure to work with—her natural ability to get along with everyone was a great asset to our company.”",
+        name: "Ken Weigel",
+        title: "CEO, ABC Office Systems",
+        avatar: "https://media.licdn.com/dms/image/v2/C5603AQHV_Xx45FLl1A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1553569009695?e=1762992000&v=beta&t=FbS9-2xHaIAJbUklMofFtfsIWIjSmEP2sUaLg1qTOm0"
+      },
+      {
+        quote: "“Her positivity and encouragement are always radiant! I highly recommend Mia and would work with her again.”",
+        name: "Rich Yueh, Ph.D.",
+        title: "Founder, UCR Nexus Studio",
+        avatar: "https://media.licdn.com/dms/image/v2/D5603AQGIgs0s2QQmPA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1671405648792?e=1762992000&v=beta&t=rtaNC7KAkNB9Q1C8vCvxgzRTNKVkrY57Nn02Xp7eBcA"
+      }
+    ];
+
+    const testCard = document.getElementById('testCard');
+    const testQuote = document.getElementById('testQuote');
+    const testAvatar = document.getElementById('testAvatar');
+    const testName = document.getElementById('testName');
+    const testTitle = document.getElementById('testTitle');
+    const testDots = document.getElementById('testDots');
+    const prevBtn = document.getElementById('prevTest');
+    const nextBtn = document.getElementById('nextTest');
+
+    let idx = 0, autoTimer;
+
+    function render(i) {
+      const t = testimonials[i];
+      testQuote.textContent = t.quote;
+      testAvatar.src = t.avatar;
+      testAvatar.alt = t.name;
+      testName.textContent = t.name;
+      testTitle.textContent = t.title;
+
+      testDots.innerHTML = "";
+      testimonials.forEach((_, di) => {
+        const b = document.createElement('button');
+        b.className = 'dot';
+        b.setAttribute('aria-label', `Go to testimonial ${di + 1}`);
+        if (di === i) b.classList.add('bg-slate-700', 'border-slate-700');
+        b.addEventListener('click', () => { idx = di; render(idx); restartAuto(); });
+        testDots.appendChild(b);
+      });
+    }
+
+    function next() { idx = (idx + 1) % testimonials.length; render(idx); }
+    function prev() { idx = (idx - 1 + testimonials.length) % testimonials.length; render(idx); }
+
+    function startAuto() { stopAuto(); autoTimer = setInterval(() => next(), 6000); }
+    function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
+    function restartAuto() { stopAuto(); startAuto(); }
+
+    ['mouseenter','focusin','touchstart','pointerdown'].forEach(evt => testCard.addEventListener(evt, stopAuto, {passive:true}));
+    ['mouseleave','focusout','touchend','pointerup'].forEach(evt => testCard.addEventListener(evt, startAuto, {passive:true}));
+
+    testCard.setAttribute('tabindex', '0');
+    testCard.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); restartAuto(); }
+      if (e.key === 'ArrowLeft') { prev(); restartAuto(); }
+    });
+
+    // simple swipe
+    let startX = null;
+    testCard.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+    testCard.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); restartAuto(); }
+      startX = null;
+    }, {passive:true});
+
+    prevBtn?.addEventListener('click', () => { prev(); restartAuto(); });
+    nextBtn?.addEventListener('click', () => { next(); restartAuto(); });
+
+    render(idx);
+    startAuto();
+
+    // ===== Live Counter Script (vanilla JS) =====
+    (function() {
+      const el = document.querySelector('#live-portfolio-impact .live-counter');
+      if (!el) return;
+
+      const startValue = Number(el.getAttribute('data-start') || '0');
+      const ratePerDay = Number(el.getAttribute('data-rate-per-day') || '0');
+      const decimals = Number(el.getAttribute('data-decimals') || '2');
+      const prefix = el.getAttribute('data-prefix') ?? '';
+      const suffix = el.getAttribute('data-suffix') ?? '';
+
+      // derive per-second increment
+      const perSecond = ratePerDay / 86400; // 24*60*60
+
+      let startTs = performance.now();
+      let startAmount = startValue;
+
+      const nf = new Intl.NumberFormat(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+
+      function renderAmt(amount) {
+        el.textContent = `${prefix}${nf.format(amount)}${suffix ? ' ' + suffix : ''}`;
+      }
+
+      function tick(ts) {
+        const elapsed = (ts - startTs) / 1000; // seconds
+        const amount = startAmount + elapsed * perSecond;
+        renderAmt(amount);
+        requestAnimationFrame(tick);
+      }
+
+      renderAmt(startAmount);
+      requestAnimationFrame(tick);
+    })();
+
+    // ===== ROI Calculator (minimal) =====
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+      const nfPct = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function setSignal(text, classes) {
+        const el = $('roi_signal');
+        el.className = 'mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-semibold border ' + classes;
+        el.textContent = text;
+      }
+
+      function calc() {
+        const G = Number($('roi_gain')?.value || 0);
+        const upfront = Number($('roi_upfront')?.value || 0);
+        const monthly = Number($('roi_monthly')?.value || 0);
+        const months = Number($('roi_months')?.value || 0);
+
+        const totalCost = upfront + (monthly * months);
+        $('roi_total_cost').textContent = nfMoney.format(totalCost);
+
+        if (!G || !totalCost || totalCost <= 0) {
+          $('roi_percent').textContent = '0.00%';
+          setSignal('Enter values to evaluate', 'border-slate-300 text-slate-700 bg-white');
+          $('roi_steps').textContent = '';
+          return;
+        }
+
+        const roi = ((G - totalCost) / totalCost) * 100;
+        $('roi_percent').textContent = nfPct.format(roi) + '%';
+
+        if (roi >= 10) setSignal('Strong ROI', 'border-green-200 text-green-800 bg-green-50');
+        else if (roi >= 0) setSignal('Positive ROI', 'border-emerald-200 text-emerald-800 bg-emerald-50');
+        else setSignal('Negative ROI', 'border-rose-200 text-rose-800 bg-rose-50');
+
+        const steps = [
+          `Inputs: G = ${nfMoney.format(G)}, Upfront = ${nfMoney.format(upfront)}, Monthly = ${nfMoney.format(monthly)}, Months = ${months}`,
+          `Total Cost C = Upfront + (Monthly × Months) = ${nfMoney.format(upfront)} + (${nfMoney.format(monthly)} × ${months}) = ${nfMoney.format(totalCost)}`,
+          `ROI = (G − C) ÷ C × 100 = (${nfMoney.format(G)} − ${nfMoney.format(totalCost)}) ÷ ${nfMoney.format(totalCost)} × 100`,
+          `ROI = ${nfPct.format(roi)}%`
+        ].join('\n');
+        $('roi_steps').textContent = steps;
+      }
+
+      // Bind calculate button
+      $('roi_calc_btn')?.addEventListener('click', calc);
+
+      // Calculate on Enter and on blur for smooth UX
+      ['roi_gain','roi_upfront','roi_monthly','roi_months'].forEach(id => {
+        const el = $(id);
+        if (!el) return;
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); calc(); } });
+        el.addEventListener('blur', calc);
+      });
+
+      // Optional demo values
+      if ($('roi_gain')) {
+        $('roi_gain').value = 10000;
+        $('roi_upfront').value = 6000;
+        $('roi_monthly').value = 25;
+        $('roi_months').value = 12;
+        calc();
+      }
+    })();
+
+    // ===== Retail Sales Forecast Calculator =====
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+      const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function toMinutes(t) { if (!t) return null; const [h,m] = t.split(':').map(Number); return h*60 + m; }
+
+      function calc() {
+        const openM = toMinutes($('sf_open').value);
+        const nowM = toMinutes($('sf_now').value);
+        const closeM = toMinutes($('sf_close').value);
+        const sales = Number($('sf_sales').value || 0);
+        const tx = Number($('sf_tx').value || 0);
+
+        if (openM == null || nowM == null || closeM == null || !sales || !tx || nowM <= openM || closeM <= nowM) {
+          $('sf_elapsed').textContent = '0.00';
+          $('sf_remaining').textContent = '0.00';
+          $('sf_avg_ticket').textContent = nfMoney.format(0);
+          $('sf_tph').textContent = '0.00';
+          $('sf_proj_tx').textContent = '0';
+          $('sf_proj_sales').textContent = nfMoney.format(0);
+          $('sf_note').textContent = 'Enter valid times and values';
+          $('sf_steps').textContent = '';
+          return;
+        }
+
+        const elapsedH = (nowM - openM) / 60;
+        const remainingH = (closeM - nowM) / 60;
+        const avgTicket = sales / tx;
+        const tph = tx / Math.max(elapsedH, 0.01);
+        const addTx = tph * remainingH;
+        const projTx = Math.round(tx + addTx);
+        const projSales = sales + avgTicket * addTx;
+
+        $('sf_elapsed').textContent = nfNum.format(elapsedH);
+        $('sf_remaining').textContent = nfNum.format(remainingH);
+        $('sf_avg_ticket').textContent = nfMoney.format(avgTicket);
+        $('sf_tph').textContent = nfNum.format(tph);
+        $('sf_proj_tx').textContent = projTx.toString();
+        $('sf_proj_sales').textContent = nfMoney.format(projSales);
+        $('sf_note').textContent = remainingH >= 3 ? 'Projection stabilizes with more hours left' : 'Short window remaining; variance may be high';
+
+        const steps = [
+          `Elapsed hours = (Now − Open) = ${nfNum.format(elapsedH)}`,
+          `Remaining hours = (Close − Now) = ${nfNum.format(remainingH)}`,
+          `Avg ticket = Sales ÷ Transactions = ${nfMoney.format(sales)} ÷ ${tx} = ${nfMoney.format(avgTicket)}`,
+          `Transactions/hour = Transactions ÷ Elapsed hours = ${tx} ÷ ${nfNum.format(elapsedH)} = ${nfNum.format(tph)}`,
+          `Projected additional transactions = TPH × Remaining hours = ${nfNum.format(tph)} × ${nfNum.format(remainingH)} = ${nfNum.format(addTx)}`,
+          `Projected total transactions ≈ ${projTx}`,
+          `Projected sales = Current sales + Avg ticket × Additional transactions = ${nfMoney.format(sales)} + ${nfMoney.format(avgTicket)} × ${nfNum.format(addTx)} = ${nfMoney.format(projSales)}`
+        ].join('\n');
+        $('sf_steps').textContent = steps;
+      }
+
+      // Bind
+      document.getElementById('sf_calc_btn')?.addEventListener('click', calc);
+      document.getElementById('sf_now_btn')?.addEventListener('click', () => {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2,'0');
+        const mm = String(now.getMinutes()).padStart(2,'0');
+        document.getElementById('sf_now').value = `${hh}:${mm}`;
+        calc();
+      });
+
+      ;['sf_open','sf_now','sf_close','sf_sales','sf_tx'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return; el.addEventListener('change', calc); el.addEventListener('blur', calc);
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calc(); } });
+      });
+    })();
+
+    // ===== Three-Point Estimating (PERT) =====
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function calc(){
+        const O = Number($('tpe_o').value || 0);
+        const M = Number($('tpe_m').value || 0);
+        const P = Number($('tpe_p').value || 0);
+        if (!O || !M || !P || P < O) {
+          $('tpe_e').textContent = '0.00';
+          $('tpe_sd').textContent = '0.00';
+          $('tpe_ci').textContent = '0.00–0.00';
+          $('tpe_signal').textContent = 'Enter valid estimates (P should be ≥ O)';
+          $('tpe_steps').textContent = '';
+          return;
+        }
+        const E = (O + 4*M + P) / 6;
+        const SD = (P - O) / 6;
+        const low = E - 1.645 * SD; // ~90% CI
+        const high = E + 1.645 * SD;
+
+        $('tpe_e').textContent = nfNum.format(E);
+        $('tpe_sd').textContent = nfNum.format(SD);
+        $('tpe_ci').textContent = `${nfNum.format(low)}–${nfNum.format(high)}`;
+        $('tpe_signal').textContent = SD / E < 0.25 ? 'Tight estimate' : 'Wide estimate';
+
+        const steps = [
+          `Expected E = (O + 4M + P) ÷ 6 = (${O} + 4×${M} + ${P}) ÷ 6 = ${nfNum.format(E)}`,
+          `Std. deviation = (P − O) ÷ 6 = (${P} − ${O}) ÷ 6 = ${nfNum.format(SD)}`,
+          `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(1.645*SD)} = ${nfNum.format(low)} to ${nfNum.format(high)}`
+        ].join('\n');
+        $('tpe_steps').textContent = steps;
+      }
+
+      document.getElementById('tpe_calc_btn')?.addEventListener('click', calc);
+      ['tpe_o','tpe_m','tpe_p'].forEach(id=>{
+        const el = document.getElementById(id); if(!el) return; el.addEventListener('change', calc); el.addEventListener('blur', calc);
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calc(); } });
+      });
+    })();
   </script>
 </body>
 </html>
