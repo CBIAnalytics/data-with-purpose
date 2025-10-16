@@ -173,6 +173,11 @@
             </div>
           </article>
 
+          <!-- New section title ABOVE the ROI card -->
+          <div class="md:col-span-3">
+            <h3 class="text-xl font-semibold mb-3">ROI Calculator</h3>
+          </div>
+
           <!-- ✅ ROI Calculator (interactive card) -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden md:col-span-3" id="roi-card">
             <div class="p-6 md:p-8">
@@ -252,7 +257,7 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="mb-6 flex items-center justify-between flex-wrap gap-3">
           <h2 class="text-2xl sm:text-3xl font-extrabold">ROI & Forecast Calculators</h2>
-          <a href="#contact" class="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Request a demo</a>
+          <a href="#contact" class="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Unlock Pro Version</a>
         </div>
 
         <div class="grid grid-cols-1 gap-6">
@@ -267,7 +272,8 @@
               </div>
               <p class="mt-2 text-sm text-slate-600">Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.</p>
 
-              <div class="mt-5 grid grid-cols-1 md:grid-cols-5 gap-4">
+              <!-- Added: Daily target ($) -->
+              <div class="mt-5 grid grid-cols-1 md:grid-cols-6 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium">Open time</span>
                   <input id="sf_open" type="time" value="09:00" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
@@ -288,6 +294,10 @@
                   <span class="text-sm font-medium">Current transactions</span>
                   <input id="sf_tx" type="number" inputmode="numeric" placeholder="e.g. 5459" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
                 </label>
+                <label class="block">
+                  <span class="text-sm font-medium">Daily target ($) — optional</span>
+                  <input id="sf_target" type="number" inputmode="decimal" placeholder="e.g. 40000" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                </label>
               </div>
 
               <div class="mt-5 flex items-center gap-3">
@@ -305,7 +315,24 @@
               <div id="sf_output2" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Projected transactions</div><div id="sf_proj_tx" class="mt-1 text-2xl font-extrabold tabular-nums">0</div></div>
                 <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Projected sales</div><div id="sf_proj_sales" class="mt-1 text-2xl font-extrabold tabular-nums">$0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Confidence note</div><div id="sf_note" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Guidance</div>
+                  <div id="sf_note_wrap" class="mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700">
+                    <span id="sf_note">Enter values to evaluate</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Goal progress (shown only if target provided) -->
+              <div id="sf_goal_wrap" class="mt-4 hidden">
+                <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
+                  <span>Goal progress</span>
+                  <span id="sf_goal_pct">0%</span>
+                </div>
+                <div class="h-2 w-full rounded-full bg-slate-100">
+                  <div id="sf_goal_bar" class="h-2 rounded-full bg-slate-900" style="width:0%"></div>
+                </div>
+                <div class="mt-2 text-xs text-slate-500" id="sf_gap_line">Gap to goal: —</div>
               </div>
 
               <details class="mt-6 group">
@@ -401,7 +428,6 @@
               All data reflects aggregated directional impact across current initiatives and projects.
             </p>
 
-            <!-- micro legend (Method removed) -->
             <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-white/70">
               <span class="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Data source: internal aggregate</span>
             </div>
@@ -588,9 +614,7 @@
       const prefix = el.getAttribute('data-prefix') ?? '';
       const suffix = el.getAttribute('data-suffix') ?? '';
 
-      // derive per-second increment
-      const perSecond = ratePerDay / 86400; // 24*60*60
-
+      const perSecond = ratePerDay / 86400;
       let startTs = performance.now();
       let startAmount = startValue;
 
@@ -604,7 +628,7 @@
       }
 
       function tick(ts) {
-        const elapsed = (ts - startTs) / 1000; // seconds
+        const elapsed = (ts - startTs) / 1000;
         const amount = startAmount + elapsed * perSecond;
         renderAmt(amount);
         requestAnimationFrame(tick);
@@ -658,10 +682,7 @@
         $('roi_steps').textContent = steps;
       }
 
-      // Bind calculate button
       $('roi_calc_btn')?.addEventListener('click', calc);
-
-      // Calculate on Enter and on blur for smooth UX
       ['roi_gain','roi_upfront','roi_monthly','roi_months'].forEach(id => {
         const el = $(id);
         if (!el) return;
@@ -669,7 +690,6 @@
         el.addEventListener('blur', calc);
       });
 
-      // Optional demo values
       if ($('roi_gain')) {
         $('roi_gain').value = 10000;
         $('roi_upfront').value = 6000;
@@ -679,7 +699,7 @@
       }
     })();
 
-    // ===== Retail Sales Forecast Calculator =====
+    // ===== Retail Sales Forecast Calculator (with target & dynamic guidance) =====
     (function(){
       const $ = (id) => document.getElementById(id);
       const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
@@ -693,6 +713,7 @@
         const closeM = toMinutes($('sf_close').value);
         const sales = Number($('sf_sales').value || 0);
         const tx = Number($('sf_tx').value || 0);
+        const target = Number($('sf_target').value || 0);
 
         if (openM == null || nowM == null || closeM == null || !sales || !tx || nowM <= openM || closeM <= nowM) {
           $('sf_elapsed').textContent = '0.00';
@@ -701,8 +722,10 @@
           $('sf_tph').textContent = '0.00';
           $('sf_proj_tx').textContent = '0';
           $('sf_proj_sales').textContent = nfMoney.format(0);
-          $('sf_note').textContent = 'Enter valid times and values';
-          $('sf_steps').textContent = '';
+          $('#sf_note').textContent = 'Enter valid times and values';
+          $('#sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
+          $('#sf_goal_wrap').classList.add('hidden');
+          $('#sf_steps').textContent = '';
           return;
         }
 
@@ -720,7 +743,43 @@
         $('sf_tph').textContent = nfNum.format(tph);
         $('sf_proj_tx').textContent = projTx.toString();
         $('sf_proj_sales').textContent = nfMoney.format(projSales);
-        $('sf_note').textContent = remainingH >= 3 ? 'Projection stabilizes with more hours left' : 'Short window remaining; variance may be high';
+
+        // Guidance & goal visuals
+        if (target > 0) {
+          const projectedProgress = (projSales / target) * 100;
+          const gapToGoal = target - projSales;
+          const requiredTPH = Math.max(0, (target - sales) / (avgTicket || 1) / (remainingH || 1));
+          const progressPct = Math.max(0, Math.min(100, (sales / target) * 100));
+
+          // progress bar + line
+          $('#sf_goal_wrap').classList.remove('hidden');
+          $('#sf_goal_pct').textContent = `${progressPct.toFixed(1)}%`;
+          $('#sf_goal_bar').style.width = `${progressPct}%`;
+          $('#sf_gap_line').textContent =
+            `Gap to goal: ${gapToGoal >= 0 ? nfMoney.format(gapToGoal) : '+' + nfMoney.format(Math.abs(gapToGoal))}` +
+            (requiredTPH > 0 ? ` • Required pace: ${requiredTPH.toFixed(1)} tx/hr` : '');
+
+          // note color + copy
+          let noteText = '';
+          let classes = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold ';
+          if (projectedProgress < 90) {
+            noteText = `⚠️ Pacing below goal. Need about ${requiredTPH.toFixed(1)} tx/hr to close the gap.`;
+            classes += 'bg-amber-50 text-amber-800';
+          } else if (projectedProgress < 100) {
+            noteText = `✅ On pace to reach ${projectedProgress.toFixed(1)}% of goal. Keep momentum.`;
+            classes += 'bg-blue-50 text-blue-800';
+          } else {
+            noteText = `🚀 Forecasting ${projectedProgress.toFixed(1)}% of goal — trending ahead by ${nfMoney.format(Math.abs(gapToGoal))}.`;
+            classes += 'bg-emerald-50 text-emerald-800';
+          }
+          $('#sf_note').textContent = noteText;
+          $('#sf_note_wrap').className = classes;
+        } else {
+          // no target: neutral accuracy note
+          $('#sf_goal_wrap').classList.add('hidden');
+          $('#sf_note').textContent = 'Accuracy improves as more data is collected throughout the day.';
+          $('#sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
+        }
 
         const steps = [
           `Elapsed hours = (Now − Open) = ${nfNum.format(elapsedH)}`,
@@ -744,7 +803,7 @@
         calc();
       });
 
-      ;['sf_open','sf_now','sf_close','sf_sales','sf_tx'].forEach(id => {
+      ;['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return; el.addEventListener('change', calc); el.addEventListener('blur', calc);
         el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calc(); } });
