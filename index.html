@@ -244,7 +244,7 @@
                 Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.
               </p>
 
-              <!-- Perfectly aligned inputs -->
+              <!-- Aligned inputs -->
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Open time</span>
@@ -298,7 +298,6 @@
                 </div>
               </div>
 
-              <!-- Goal progress (only when target is set) -->
               <div id="sf_goal_wrap" class="mt-4 hidden">
                 <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
                   <span>Goal progress</span>
@@ -322,28 +321,26 @@
             <div class="p-6 md:p-8">
               <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
 
-              <!-- Entry-level friendly explainer -->
               <p class="mt-2 text-sm text-slate-700">
                 Not sure how long something will really take? PERT helps you make a smart estimate by considering
                 <strong>best case</strong> (Optimistic), <strong>most likely</strong>, and <strong>worst case</strong> (Pessimistic).
                 You’ll get a realistic plan number and a range you can share with your team.
               </p>
 
-              <!-- Inputs + unit & method selection -->
               <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Optimistic (O)</span>
-                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input" title="Best case if things go smoothly">
+                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input">
                   <p class="mt-1 text-xs text-slate-500">Best case (everything goes right)</p>
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Most likely (M)</span>
-                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input" title="What you honestly expect">
+                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input">
                   <p class="mt-1 text-xs text-slate-500">Your honest expectation</p>
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Pessimistic (P)</span>
-                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input" title="Worst case with delays/risks">
+                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input">
                   <p class="mt-1 text-xs text-slate-500">Worst case (delays, blockers)</p>
                 </label>
                 <label class="block">
@@ -364,7 +361,6 @@
                 </label>
               </div>
 
-              <!-- Quick risk presets -->
               <div class="mt-3 flex flex-wrap items-center gap-2">
                 <span class="text-xs text-slate-500">Quick risk:</span>
                 <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="low">Low</button>
@@ -376,7 +372,6 @@
                 <button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Estimate time</button>
               </div>
 
-              <!-- Outputs show unit -->
               <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="rounded-2xl border border-slate-200 p-4">
                   <div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div>
@@ -396,7 +391,6 @@
                 </div>
               </div>
 
-              <!-- Plain-English summary + copy (includes unit & method in Plan) -->
               <p class="mt-3 text-xs text-slate-500">
                 We’ll calculate your expected time and a 90% range so you can set a realistic plan and buffer.
               </p>
@@ -420,13 +414,11 @@
     <!-- Live Portfolio Impact -->
     <section id="live-portfolio-impact" class="relative overflow-hidden py-16 sm:py-20">
       <div class="pointer-events-none absolute inset-0 -z-10">
-        <!-- Blue glow only (not red) -->
         <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-sky-400/15 via-cyan-400/10 to-blue-600/10 blur-3xl"></div>
       </div>
 
       <div class="mx-auto max-w-6xl px-6">
         <div class="mb-8 flex items-center gap-3">
-          <!-- 🔴 Blinking red dot -->
           <span class="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.8)]"></span>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Live Portfolio Impact</h2>
         </div>
@@ -437,11 +429,10 @@
 
             <p class="mb-4 text-sm uppercase tracking-widest text-white/60">Cumulative Impact</p>
 
-            <!-- Base + daily growth config -->
             <div class="live-counter text-4xl sm:text-5xl md:text-6xl font-extrabold tabular-nums tracking-tight text-white"
                  aria-live="polite"
-                 data-base="120045320"           <!-- value at start-date 00:00 -->
-                 data-start-date="2025-01-01"    <!-- change if needed -->
+                 data-base="120045320"
+                 data-start-date="2025-01-01"
                  data-rate-per-day="45000"
                  data-decimals="2"
                  data-prefix="$">
@@ -526,142 +517,139 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    (function(){
+      var menuBtn = document.getElementById('menuBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      if (!menuBtn || !mobileMenu) return;
+      menuBtn.addEventListener('click', function(){
+        var expanded = menuBtn.getAttribute('aria-expanded') === 'true';
         menuBtn.setAttribute('aria-expanded', String(!expanded));
         mobileMenu.classList.toggle('hidden');
       });
-      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }));
-    }
+      Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){
+        a.addEventListener('click', function(){
+          mobileMenu.classList.add('hidden');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
 
     // --- Testimonials: single-card carousel ---
-    const testimonials = [
-      {
-        quote: "“Mia, to me, represents 'Mamba Mentality.' ... a deadly mix of effectiveness + execution.”",
-        name: "Mike Kim",
-        title: "Founder & Creative Director, Some Near Place",
-        avatar: "https://media.licdn.com/dms/image/v2/D4D03AQHv-Si9Nox4yA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1664979704907?e=1762992000&v=beta&t=3W69JupXZ784QtXyBqs4_5vsWOIFh4eyt3aZofCZuoY"
-      },
-      {
-        quote: "“Mia is highly skilled at managing and studying metrics data to determine ROI across campaigns ...”",
-        name: "Ken Weigel",
-        title: "CEO, ABC Office Systems",
-        avatar: "https://media.licdn.com/dms/image/v2/C5603AQHV_Xx45FLl1A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1553569009695?e=1762992000&v=beta&t=FbS9-2xHaIAJbUklMofFtfsIWIjSmEP2sUaLg1qTOm0"
-      },
-      {
-        quote: "“Her positivity and encouragement are always radiant! I highly recommend Mia and would work with her again.”",
-        name: "Rich Yueh, Ph.D.",
-        title: "Founder, UCR Nexus Studio",
-        avatar: "https://media.licdn.com/dms/image/v2/D5603AQGIgs0s2QQmPA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1671405648792?e=1762992000&v=beta&t=rtaNC7KAkNB9Q1C8vCvxgzRTNKVkrY57Nn02Xp7eBcA"
+    (function(){
+      var testimonials = [
+        {
+          quote: "“Mia, to me, represents 'Mamba Mentality.' ... a deadly mix of effectiveness + execution.”",
+          name: "Mike Kim",
+          title: "Founder & Creative Director, Some Near Place",
+          avatar: "https://media.licdn.com/dms/image/v2/D4D03AQHv-Si9Nox4yA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1664979704907?e=1762992000&v=beta&t=3W69JupXZ784QtXyBqs4_5vsWOIFh4eyt3aZofCZuoY"
+        },
+        {
+          quote: "“Mia is highly skilled at managing and studying metrics data to determine ROI across campaigns ...”",
+          name: "Ken Weigel",
+          title: "CEO, ABC Office Systems",
+          avatar: "https://media.licdn.com/dms/image/v2/C5603AQHV_Xx45FLl1A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1553569009695?e=1762992000&v=beta&t=FbS9-2xHaIAJbUklMofFtfsIWIjSmEP2sUaLg1qTOm0"
+        },
+        {
+          quote: "“Her positivity and encouragement are always radiant! I highly recommend Mia and would work with her again.”",
+          name: "Rich Yueh, Ph.D.",
+          title: "Founder, UCR Nexus Studio",
+          avatar: "https://media.licdn.com/dms/image/v2/D5603AQGIgs0s2QQmPA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1671405648792?e=1762992000&v=beta&t=rtaNC7KAkNB9Q1C8vCvxgzRTNKVkrY57Nn02Xp7eBcA"
+        }
+      ];
+      var testCard = document.getElementById('testCard');
+      var testQuote = document.getElementById('testQuote');
+      var testAvatar = document.getElementById('testAvatar');
+      var testName = document.getElementById('testName');
+      var testTitle = document.getElementById('testTitle');
+      var testDots = document.getElementById('testDots');
+      var prevBtn = document.getElementById('prevTest');
+      var nextBtn = document.getElementById('nextTest');
+      var idx = 0, autoTimer;
+
+      function render(i){
+        var t = testimonials[i];
+        testQuote.textContent = t.quote;
+        testAvatar.src = t.avatar;
+        testAvatar.alt = t.name;
+        testName.textContent = t.name;
+        testTitle.textContent = t.title;
+        testDots.innerHTML = '';
+        testimonials.forEach(function(_, di){
+          var b = document.createElement('button');
+          b.className = 'dot';
+          b.setAttribute('aria-label','Go to testimonial ' + (di+1));
+          if (di === i) b.classList.add('bg-slate-700','border-slate-700');
+          b.addEventListener('click', function(){ idx = di; render(idx); restartAuto(); });
+          testDots.appendChild(b);
+        });
       }
-    ];
+      function next(){ idx = (idx + 1) % testimonials.length; render(idx); }
+      function prev(){ idx = (idx - 1 + testimonials.length) % testimonials.length; render(idx); }
+      function startAuto(){ stopAuto(); autoTimer = setInterval(next, 6000); }
+      function stopAuto(){ if (autoTimer) clearInterval(autoTimer); }
+      function restartAuto(){ stopAuto(); startAuto(); }
 
-    const testCard = document.getElementById('testCard');
-    const testQuote = document.getElementById('testQuote');
-    const testAvatar = document.getElementById('testAvatar');
-    const testName = document.getElementById('testName');
-    const testTitle = document.getElementById('testTitle');
-    const testDots = document.getElementById('testDots');
-    const prevBtn = document.getElementById('prevTest');
-    const nextBtn = document.getElementById('nextTest');
-    let idx = 0, autoTimer;
-
-    function render(i) {
-      const t = testimonials[i];
-      testQuote.textContent = t.quote;
-      testAvatar.src = t.avatar;
-      testAvatar.alt = t.name;
-      testName.textContent = t.name;
-      testTitle.textContent = t.title;
-
-      testDots.innerHTML = "";
-      testimonials.forEach((_, di) => {
-        const b = document.createElement('button');
-        b.className = 'dot';
-        b.setAttribute('aria-label', `Go to testimonial ${di + 1}`);
-        if (di === i) b.classList.add('bg-slate-700', 'border-slate-700');
-        b.addEventListener('click', () => { idx = di; render(idx); restartAuto(); });
-        testDots.appendChild(b);
-      });
-    }
-    function next() { idx = (idx + 1) % testimonials.length; render(idx); }
-    function prev() { idx = (idx - 1 + testimonials.length) % testimonials.length; render(idx); }
-    function startAuto() { stopAuto(); autoTimer = setInterval(() => next(), 6000); }
-    function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
-    function restartAuto() { stopAuto(); startAuto(); }
-
-    ['mouseenter','focusin','touchstart','pointerdown'].forEach(evt => testCard.addEventListener(evt, stopAuto, {passive:true}));
-    ['mouseleave','focusout','touchend','pointerup'].forEach(evt => testCard.addEventListener(evt, startAuto, {passive:true}));
-    testCard.setAttribute('tabindex', '0');
-    testCard.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { next(); restartAuto(); }
-      if (e.key === 'ArrowLeft') { prev(); restartAuto(); }
-    });
-    let startX=null;
-    testCard.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-    testCard.addEventListener('touchend', (e) => { if (startX===null) return; const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx)>40) { dx<0?next():prev(); restartAuto(); } startX=null; }, {passive:true});
-    prevBtn?.addEventListener('click', () => { prev(); restartAuto(); });
-    nextBtn?.addEventListener('click', () => { next(); restartAuto(); });
-    render(idx); startAuto();
+      ['mouseenter','focusin','touchstart','pointerdown'].forEach(function(evt){ testCard.addEventListener(evt, stopAuto, {passive:true}); });
+      ['mouseleave','focusout','touchend','pointerup'].forEach(function(evt){ testCard.addEventListener(evt, startAuto, {passive:true}); });
+      testCard.setAttribute('tabindex','0');
+      testCard.addEventListener('keydown', function(e){ if(e.key==='ArrowRight'){ next(); restartAuto(); } if(e.key==='ArrowLeft'){ prev(); restartAuto(); } });
+      var startX=null;
+      testCard.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+      testCard.addEventListener('touchend', function(e){
+        if (startX===null) return;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) { dx<0 ? next() : prev(); restartAuto(); }
+        startX=null;
+      }, {passive:true});
+      if (prevBtn) prevBtn.addEventListener('click', function(){ prev(); restartAuto(); });
+      if (nextBtn) nextBtn.addEventListener('click', function(){ next(); restartAuto(); });
+      render(idx); startAuto();
+    })();
 
     // ===== Live Counter Script (adds $45k per day) =====
     (function() {
-      const el = document.querySelector('#live-portfolio-impact .live-counter');
+      var el = document.querySelector('#live-portfolio-impact .live-counter');
       if (!el) return;
+      var base = Number(el.getAttribute('data-base') || '0');
+      var startDateStr = el.getAttribute('data-start-date') || '2025-01-01';
+      var ratePerDay = Number(el.getAttribute('data-rate-per-day') || '45000');
+      var decimals = Number(el.getAttribute('data-decimals') || '2');
+      var prefix = el.getAttribute('data-prefix') || '';
+      var nf = new Intl.NumberFormat(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
-      const base = Number(el.getAttribute('data-base') || '0');            // value at start-date 00:00 (local)
-      const startDateStr = el.getAttribute('data-start-date') || '2025-01-01';
-      const ratePerDay = Number(el.getAttribute('data-rate-per-day') || '45000');
-      const decimals = Number(el.getAttribute('data-decimals') || '2');
-      const prefix = el.getAttribute('data-prefix') ?? '';
-
-      const nf = new Intl.NumberFormat(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-
-      function computeNowValue() {
-        const now = new Date();
-        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // local midnight
-        const [Y,M,D] = startDateStr.split('-').map(Number);
-        const epoch = new Date(Y, (M-1), D); // local midnight of start date
-
-        const msPerDay = 24 * 60 * 60 * 1000;
-        const fullDays = Math.floor((todayStart - epoch) / msPerDay);
-        const fractionToday = (now - todayStart) / msPerDay;
-
+      function computeNowValue(){
+        var now = new Date();
+        var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var parts = startDateStr.split('-').map(Number);
+        var epoch = new Date(parts[0], parts[1]-1, parts[2]);
+        var msPerDay = 24*60*60*1000;
+        var fullDays = Math.floor((todayStart - epoch) / msPerDay);
+        var fractionToday = (now - todayStart) / msPerDay;
         return base + (fullDays * ratePerDay) + (fractionToday * ratePerDay);
       }
-
-      function render() {
-        el.textContent = prefix + nf.format(computeNowValue());
-        requestAnimationFrame(render);
-      }
+      function render(){ el.textContent = prefix + nf.format(computeNowValue()); requestAnimationFrame(render); }
       render();
     })();
 
     // ===== ROI Calculator =====
     (function(){
-      const $ = (id) => document.getElementById(id);
-      const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
-      const nfPct = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+      var nfPct = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      function $(id){ return document.getElementById(id); }
 
       function setSignal(text, classes) {
-        const el = $('roi_signal');
+        var el = $('roi_signal');
         el.className = 'mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-semibold border ' + classes;
         el.textContent = text;
       }
 
       function calc() {
-        const G = Number($('roi_gain')?.value || 0);
-        const upfront = Number($('roi_upfront')?.value || 0);
-        const monthly = Number($('roi_monthly')?.value || 0);
-        const months = Number($('roi_months')?.value || 0);
+        var G = Number(($('roi_gain')||{}).value || 0);
+        var upfront = Number(($('roi_upfront')||{}).value || 0);
+        var monthly = Number(($('roi_monthly')||{}).value || 0);
+        var months = Number(($('roi_months')||{}).value || 0);
 
-        const totalCost = upfront + (monthly * months);
+        var totalCost = upfront + (monthly * months);
         $('roi_total_cost').textContent = nfMoney.format(totalCost);
 
         if (!G || !totalCost || totalCost <= 0) {
@@ -671,29 +659,31 @@
           return;
         }
 
-        const roi = ((G - totalCost) / totalCost) * 100;
+        var roi = ((G - totalCost) / totalCost) * 100;
         $('roi_percent').textContent = nfPct.format(roi) + '%';
 
         if (roi >= 10) setSignal('Strong ROI', 'border-green-200 text-green-800 bg-green-50');
         else if (roi >= 0) setSignal('Positive ROI', 'border-emerald-200 text-emerald-800 bg-emerald-50');
         else setSignal('Negative ROI', 'border-rose-200 text-rose-800 bg-rose-50');
 
-        const steps = [
-          `Inputs: G = ${nfMoney.format(G)}, Upfront = ${nfMoney.format(upfront)}, Monthly = ${nfMoney.format(monthly)}, Months = ${months}`,
-          `Total Cost C = Upfront + (Monthly × Months) = ${nfMoney.format(upfront)} + (${nfMoney.format(monthly)} × ${months}) = ${nfMoney.format(totalCost)}`,
-          `ROI = (G − C) ÷ C × 100 = (${nfMoney.format(G)} − ${nfMoney.format(totalCost)}) ÷ ${nfMoney.format(totalCost)} × 100`,
-          `ROI = ${nfPct.format(roi)}%`
+        var steps = [
+          'Inputs: G = ' + nfMoney.format(G) + ', Upfront = ' + nfMoney.format(upfront) + ', Monthly = ' + nfMoney.format(monthly) + ', Months = ' + months,
+          'Total Cost C = Upfront + (Monthly × Months) = ' + nfMoney.format(upfront) + ' + (' + nfMoney.format(monthly) + ' × ' + months + ') = ' + nfMoney.format(totalCost),
+          'ROI = (G − C) ÷ C × 100 = (' + nfMoney.format(G) + ' − ' + nfMoney.format(totalCost) + ') ÷ ' + nfMoney.format(totalCost) + ' × 100',
+          'ROI = ' + nfPct.format(roi) + '%'
         ].join('\n');
         $('roi_steps').textContent = steps;
       }
 
-      $('roi_calc_btn')?.addEventListener('click', calc);
-      ['roi_gain','roi_upfront','roi_monthly','roi_months'].forEach(id => {
-        const el = $(id); if (!el) return;
-        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
+      var btn = document.getElementById('roi_calc_btn');
+      if (btn) btn.addEventListener('click', calc);
+      ['roi_gain','roi_upfront','roi_monthly','roi_months'].forEach(function(id){
+        var el = document.getElementById(id); if (!el) return;
+        ['input','change','blur','keydown'].forEach(function(evt){
+          el.addEventListener(evt, function(e){ if(e.key==='Enter'){ e.preventDefault(); } calc(); });
+        });
       });
 
-      // Demo defaults
       if ($('roi_gain')) {
         $('roi_gain').value = 10000;
         $('roi_upfront').value = 6000;
@@ -705,27 +695,27 @@
 
     // ===== Retail Sales Forecast (with target & dynamic guidance) =====
     (function(){
-      const $ = (id) => document.getElementById(id);
-      const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
-      const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      const toMinutes = (t) => { if (!t) return null; const [h,m] = t.split(':').map(Number); return h*60 + m; };
+      var nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+      var nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      function $(id){ return document.getElementById(id); }
+      function toMinutes(t){ if (!t) return null; var a=t.split(':'); return Number(a[0])*60 + Number(a[1]); }
 
       function ensureNowIfEmpty() {
-        const nowEl = $('sf_now'); if (!nowEl.value) {
-          const now = new Date(); const hh = String(now.getHours()).padStart(2,'0'); const mm = String(now.getMinutes()).padStart(2,'0');
-          nowEl.value = `${hh}:${mm}`;
+        var nowEl = $('sf_now'); if (!nowEl.value) {
+          var now = new Date(); var hh = String(now.getHours()).padStart(2,'0'); var mm = String(now.getMinutes()).padStart(2,'0');
+          nowEl.value = hh + ':' + mm;
         }
       }
 
       function calc() {
         ensureNowIfEmpty();
 
-        const openM = toMinutes($('sf_open').value);
-        const nowM = toMinutes($('sf_now').value);
-        const closeM = toMinutes($('sf_close').value);
-        const sales = Number($('sf_sales').value || 0);
-        const tx = Number($('sf_tx').value || 0);
-        const target = Number($('sf_target').value || 0);
+        var openM = toMinutes($('sf_open').value);
+        var nowM = toMinutes($('sf_now').value);
+        var closeM = toMinutes($('sf_close').value);
+        var sales = Number($('sf_sales').value || 0);
+        var tx = Number($('sf_tx').value || 0);
+        var target = Number($('sf_target').value || 0);
 
         if (openM == null || nowM == null || closeM == null || !sales || !tx || nowM <= openM || closeM <= nowM) {
           $('sf_elapsed').textContent = '0.00';
@@ -741,44 +731,44 @@
           return;
         }
 
-        const elapsedH = (nowM - openM) / 60;
-        const remainingH = (closeM - nowM) / 60;
-        const avgTicket = sales / tx;
-        const tph = tx / Math.max(elapsedH, 0.01);
-        const addTx = tph * remainingH;
-        const projTx = Math.round(tx + addTx);
-        const projSales = sales + avgTicket * addTx;
+        var elapsedH = (nowM - openM) / 60;
+        var remainingH = (closeM - nowM) / 60;
+        var avgTicket = sales / tx;
+        var tph = tx / Math.max(elapsedH, 0.01);
+        var addTx = tph * remainingH;
+        var projTx = Math.round(tx + addTx);
+        var projSales = sales + avgTicket * addTx;
 
         $('sf_elapsed').textContent = nfNum.format(elapsedH);
         $('sf_remaining').textContent = nfNum.format(remainingH);
         $('sf_avg_ticket').textContent = nfMoney.format(avgTicket);
         $('sf_tph').textContent = nfNum.format(tph);
-        $('sf_proj_tx').textContent = projTx.toString();
+        $('sf_proj_tx').textContent = String(projTx);
         $('sf_proj_sales').textContent = nfMoney.format(projSales);
 
         if (target > 0) {
-          const projectedProgress = (projSales / target) * 100;
-          const gapToGoal = target - projSales;
-          const requiredTPH = Math.max(0, (target - sales) / (avgTicket || 1) / (remainingH || 1));
-          const progressPct = Math.max(0, Math.min(100, (sales / target) * 100));
+          var projectedProgress = (projSales / target) * 100;
+          var gapToGoal = target - projSales;
+          var requiredTPH = Math.max(0, (target - sales) / (avgTicket || 1) / (remainingH || 1));
+          var progressPct = Math.max(0, Math.min(100, (sales / target) * 100));
 
           $('sf_goal_wrap').classList.remove('hidden');
-          $('sf_goal_pct').textContent = `${progressPct.toFixed(1)}%`;
-          $('sf_goal_bar').style.width = `${progressPct}%`;
+          $('sf_goal_pct').textContent = progressPct.toFixed(1) + '%';
+          $('sf_goal_bar').style.width = progressPct + '%';
           $('sf_gap_line').textContent =
-            `Gap to goal: ${gapToGoal >= 0 ? nfMoney.format(gapToGoal) : '+' + nfMoney.format(Math.abs(gapToGoal))}` +
-            (requiredTPH > 0 ? ` • Required pace: ${requiredTPH.toFixed(1)} tx/hr` : '');
+            'Gap to goal: ' + (gapToGoal >= 0 ? nfMoney.format(gapToGoal) : '+' + nfMoney.format(Math.abs(gapToGoal))) +
+            (requiredTPH > 0 ? ' • Required pace: ' + requiredTPH.toFixed(1) + ' tx/hr' : '');
 
-          let noteText = '';
-          let classes = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold ';
+          var noteText = '';
+          var classes = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold ';
           if (projectedProgress < 90) {
-            noteText = `⚠️ Pacing below goal. Need about ${requiredTPH.toFixed(1)} tx/hr to close the gap.`;
+            noteText = '⚠️ Pacing below goal. Need about ' + requiredTPH.toFixed(1) + ' tx/hr to close the gap.';
             classes += 'bg-amber-50 text-amber-800';
           } else if (projectedProgress < 100) {
-            noteText = `✅ On pace to reach ${projectedProgress.toFixed(1)}% of goal. Keep momentum.`;
+            noteText = '✅ On pace to reach ' + projectedProgress.toFixed(1) + '% of goal. Keep momentum.';
             classes += 'bg-blue-50 text-blue-800';
           } else {
-            noteText = `🚀 Forecasting ${projectedProgress.toFixed(1)}% of goal — trending ahead by ${nfMoney.format(Math.abs(gapToGoal))}.`;
+            noteText = '🚀 Forecasting ' + projectedProgress.toFixed(1) + '% of goal — trending ahead by ' + nfMoney.format(Math.abs(gapToGoal)) + '.';
             classes += 'bg-emerald-50 text-emerald-800';
           }
           $('sf_note').textContent = noteText;
@@ -789,61 +779,63 @@
           $('sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
         }
 
-        const steps = [
-          `Elapsed hours = (Now − Open) = ${nfNum.format(elapsedH)}`,
-          `Remaining hours = (Close − Now) = ${nfNum.format(remainingH)}`,
-          `Avg ticket = Sales ÷ Transactions = ${nfMoney.format(sales)} ÷ ${tx} = ${nfMoney.format(avgTicket)}`,
-          `Transactions/hour = Transactions ÷ Elapsed hours = ${tx} ÷ ${nfNum.format(elapsedH)} = ${nfNum.format(tph)}`,
-          `Projected additional transactions = TPH × Remaining hours = ${nfNum.format(tph)} × ${nfNum.format(remainingH)} = ${nfNum.format(addTx)}`,
-          `Projected total transactions ≈ ${projTx}`,
-          `Projected sales = ${nfMoney.format(sales)} + ${nfMoney.format(avgTicket)} × ${nfNum.format(addTx)} = ${nfMoney.format(projSales)}`
+        var steps = [
+          'Elapsed hours = (Now − Open) = ' + nfNum.format(elapsedH),
+          'Remaining hours = (Close − Now) = ' + nfNum.format(remainingH),
+          'Avg ticket = Sales ÷ Transactions = ' + nfMoney.format(sales) + ' ÷ ' + tx + ' = ' + nfMoney.format(avgTicket),
+          'Transactions/hour = Transactions ÷ Elapsed hours = ' + tx + ' ÷ ' + nfNum.format(elapsedH) + ' = ' + nfNum.format(tph),
+          'Projected additional transactions = TPH × Remaining hours = ' + nfNum.format(tph) + ' × ' + nfNum.format(remainingH) + ' = ' + nfNum.format(addTx),
+          'Projected total transactions ≈ ' + projTx,
+          'Projected sales = ' + nfMoney.format(sales) + ' + ' + nfMoney.format(avgTicket) + ' × ' + nfNum.format(addTx) + ' = ' + nfMoney.format(projSales)
         ].join('\n');
         $('sf_steps').textContent = steps;
       }
 
-      // Bind: respond instantly on input
-      ['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(id => {
-        const el = document.getElementById(id);
+      ['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(function(id){
+        var el = document.getElementById(id);
         if (!el) return;
-        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e) => { if(e.key==='Enter'){e.preventDefault();} calc(); }));
+        ['input','change','blur','keydown'].forEach(function(evt){
+          el.addEventListener(evt, function(e){ if(e.key==='Enter'){ e.preventDefault(); } calc(); });
+        });
       });
 
-      document.getElementById('sf_calc_btn')?.addEventListener('click', calc);
-      document.getElementById('sf_now_btn')?.addEventListener('click', () => {
-        const now = new Date();
-        const hh = String(now.getHours()).padStart(2,'0');
-        const mm = String(now.getMinutes()).padStart(2,'0');
-        document.getElementById('sf_now').value = `${hh}:${mm}`;
+      var fBtn = document.getElementById('sf_calc_btn');
+      if (fBtn) fBtn.addEventListener('click', calc);
+      var nowBtn = document.getElementById('sf_now_btn');
+      if (nowBtn) nowBtn.addEventListener('click', function(){
+        var now = new Date();
+        var hh = String(now.getHours()).padStart(2,'0');
+        var mm = String(now.getMinutes()).padStart(2,'0');
+        document.getElementById('sf_now').value = hh + ':' + mm;
         calc();
       });
 
-      // Auto-set current time on load
+      // initialize current time once
       (function initNow(){
-        const now = new Date();
-        const hh = String(now.getHours()).padStart(2,'0');
-        const mm = String(now.getMinutes()).padStart(2,'0');
-        document.getElementById('sf_now').value = `${hh}:${mm}`;
+        var now = new Date();
+        var hh = String(now.getHours()).padStart(2,'0');
+        var mm = String(now.getMinutes()).padStart(2,'0');
+        document.getElementById('sf_now').value = hh + ':' + mm;
       })();
     })();
 
     // ===== Three-Point Estimating (PERT/Triangular) with Units, presets & summary =====
     (function(){
-      const $ = (id) => document.getElementById(id);
-      const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      const unitText = () => ($('#tpe_unit')?.value === 'hours' ? 'hours' : 'days');
+      function $(id){ return document.getElementById(id); }
+      var nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      function unitText(){ return ($('#tpe_unit') && $('#tpe_unit').value === 'hours') ? 'hours' : 'days'; }
 
       function sdTriangular(O,M,P){
-        // SD for triangular: sqrt((O^2 + M^2 + P^2 - O*M - O*P - M*P) / 18)
-        const num = (O*O + M*M + P*P - O*M - O*P - M*P);
+        var num = (O*O + M*M + P*P - O*M - O*P - M*P);
         return Math.sqrt(Math.max(0, num / 18));
       }
 
       function calc(){
-        const O = Number($('#tpe_o').value || 0);
-        const M = Number($('#tpe_m').value || 0);
-        const P = Number($('#tpe_p').value || 0);
-        const method = $('#tpe_method')?.value || 'pert';
-        const u = unitText();
+        var O = Number(($('#tpe_o')||{}).value || 0);
+        var M = Number(($('#tpe_m')||{}).value || 0);
+        var P = Number(($('#tpe_p')||{}).value || 0);
+        var method = ($('#tpe_method')||{}).value || 'pert';
+        var u = unitText();
 
         if (!O || !M || !P || P < O) {
           $('#tpe_e').textContent = '0.00';
@@ -855,86 +847,88 @@
           return;
         }
 
-        const E = (method === 'triangular') ? (O + M + P) / 3 : (O + 4*M + P) / 6;
-        const SD = (method === 'triangular') ? sdTriangular(O,M,P) : (P - O) / 6;
+        var E = (method === 'triangular') ? (O + M + P) / 3 : (O + 4*M + P) / 6;
+        var SD = (method === 'triangular') ? sdTriangular(O,M,P) : (P - O) / 6;
 
-        const z = 1.645;
-        const low = E - z * SD;
-        const high = E + z * SD;
+        var z = 1.645, low = E - z*SD, high = E + z*SD;
 
-        $('#tpe_e').textContent = `${nfNum.format(E)} ${u}`;
-        $('#tpe_sd').textContent = `${nfNum.format(SD)} ${u}`;
-        $('#tpe_ci').textContent = `${nfNum.format(low)}–${nfNum.format(high)} ${u}`;
+        $('#tpe_e').textContent = nfNum.format(E) + ' ' + u;
+        $('#tpe_sd').textContent = nfNum.format(SD) + ' ' + u;
+        $('#tpe_ci').textContent = nfNum.format(low) + '–' + nfNum.format(high) + ' ' + u;
         $('#tpe_signal').textContent = SD / (E || 1) < 0.25 ? 'Tight estimate' : 'Wide estimate';
 
-        const steps = (method === 'triangular')
+        var steps = (method === 'triangular')
           ? [
-              `Expected E = (O + M + P) ÷ 3 = (${O} + ${M} + ${P}) ÷ 3 = ${nfNum.format(E)} ${u}`,
-              `Std. deviation (triangular) = √((O² + M² + P² − O·M − O·P − M·P) ÷ 18) = ${nfNum.format(SD)} ${u}`,
-              `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(z*SD)} = ${nfNum.format(low)}–${nfNum.format(high)} ${u}`
+              'Expected E = (O + M + P) ÷ 3 = ('+O+' + '+M+' + '+P+') ÷ 3 = ' + nfNum.format(E) + ' ' + u,
+              'Std. deviation (triangular) = √((O² + M² + P² − O·M − O·P − M·P) ÷ 18) = ' + nfNum.format(SD) + ' ' + u,
+              '90% range ≈ E ± 1.645 × SD = ' + nfNum.format(E) + ' ± ' + nfNum.format(z*SD) + ' = ' + nfNum.format(low) + '–' + nfNum.format(high) + ' ' + u
             ].join('\n')
           : [
-              `Expected E = (O + 4M + P) ÷ 6 = (${O} + 4×${M} + ${P}) ÷ 6 = ${nfNum.format(E)} ${u}`,
-              `Std. deviation (PERT) = (P − O) ÷ 6 = (${P} − ${O}) ÷ 6 = ${nfNum.format(SD)} ${u}`,
-              `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(z*SD)} = ${nfNum.format(low)}–${nfNum.format(high)} ${u}`
+              'Expected E = (O + 4M + P) ÷ 6 = ('+O+' + 4×'+M+' + '+P+') ÷ 6 = ' + nfNum.format(E) + ' ' + u,
+              'Std. deviation (PERT) = (P − O) ÷ 6 = ('+P+' − '+O+') ÷ 6 = ' + nfNum.format(SD) + ' ' + u,
+              '90% range ≈ E ± 1.645 × SD = ' + nfNum.format(E) + ' ± ' + nfNum.format(z*SD) + ' = ' + nfNum.format(low) + '–' + nfNum.format(high) + ' ' + u
             ].join('\n');
 
         $('#tpe_steps').textContent = steps;
         summarize();
       }
 
-      // Plain-English summary + copy (includes unit & method)
       function summarize(){
-        const O = Number($('#tpe_o').value || 0);
-        const M = Number($('#tpe_m').value || 0);
-        const P = Number($('#tpe_p').value || 0);
-        const u = unitText();
-        const method = $('#tpe_method')?.value || 'pert';
-        const sEl = $('#tpe_summary');
+        var O = Number(($('#tpe_o')||{}).value || 0);
+        var M = Number(($('#tpe_m')||{}).value || 0);
+        var P = Number(($('#tpe_p')||{}).value || 0);
+        var u = unitText();
+        var method = ($('#tpe_method')||{}).value || 'pert';
+        var sEl = $('#tpe_summary');
 
-        if (!O || !M || !P || P < O) {
-          sEl.textContent = 'Enter valid O/M/P (P should be ≥ O).';
-          return;
-        }
-        const E = (method === 'triangular') ? (O + M + P) / 3 : (O + 4*M + P) / 6;
-        const SD = (method === 'triangular') ? sdTriangular(O,M,P) : (P - O) / 6;
-        const z = 1.645, low = E - z*SD, high = E + z*SD;
-        const buffer = Math.max(0, high - M);
-        const label = (method === 'triangular') ? 'Triangular' : 'PERT';
+        if (!O || !M || !P || P < O) { sEl.textContent = 'Enter valid O/M/P (P should be ≥ O).'; return; }
+        var E = (method === 'triangular') ? (O + M + P) / 3 : (O + 4*M + P) / 6;
+        var SD = (method === 'triangular') ? sdTriangular(O,M,P) : (P - O) / 6;
+        var z = 1.645, low = E - z*SD, high = E + z*SD, buffer = Math.max(0, high - M);
+        var label = (method === 'triangular') ? 'Triangular' : 'PERT';
 
         sEl.textContent =
-          `${label} plan ~${nfNum.format(E)} ${u} (expected). 90% range: ${nfNum.format(low)}–${nfNum.format(high)} ${u}. ` +
-          `Use a buffer of ~${nfNum.format(buffer)} ${u} beyond your most likely.`;
+          label + ' plan ~' + nfNum.format(E) + ' ' + u + ' (expected). 90% range: ' +
+          nfNum.format(low) + '–' + nfNum.format(high) + ' ' + u +
+          '. Use a buffer of ~' + nfNum.format(buffer) + ' ' + u + ' beyond your most likely.';
       }
 
-      // Event bindings (added #tpe_method)
-      ['tpe_o','tpe_m','tpe_p','tpe_unit','tpe_method'].forEach(id=>{
-        const el = document.getElementById(id); if(!el) return;
-        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
+      // Robust bindings (no optional chaining)
+      ['tpe_o','tpe_m','tpe_p','tpe_unit','tpe_method'].forEach(function(id){
+        var el = document.getElementById(id); if(!el) return;
+        ['input','change','blur','keydown'].forEach(function(evt){
+          el.addEventListener(evt, function(e){ if(e.key==='Enter'){ e.preventDefault(); } calc(); });
+        });
       });
-      document.getElementById('tpe_calc_btn')?.addEventListener('click', calc);
+      var tpeBtn = document.getElementById('tpe_calc_btn');
+      if (tpeBtn) tpeBtn.addEventListener('click', calc);
 
-      // Risk presets: set P relative to M; set O to ~80% of M if empty
-      function applyPreset(level){
-        const mEl = $('#tpe_m'), oEl = $('#tpe_o'), pEl = $('#tpe_p');
-        const M = Number(mEl.value || 0) || 5;
-        if (!oEl.value) oEl.value = Math.max(0, 0.8 * M).toFixed(2);
-        let factor = 1.3; if (level==='med') factor = 1.6; if (level==='high') factor = 2.0;
-        pEl.value = (M * factor).toFixed(2);
-        calc();
-      }
-      document.querySelectorAll('[data-risk]').forEach(btn=>{
-        btn.addEventListener('click', ()=> applyPreset(btn.getAttribute('data-risk')));
+      // Risk presets
+      Array.prototype.forEach.call(document.querySelectorAll('[data-risk]'), function(btn){
+        btn.addEventListener('click', function(){
+          var level = btn.getAttribute('data-risk');
+          var mEl = $('#tpe_m'), oEl = $('#tpe_o'), pEl = $('#tpe_p');
+          var M = Number((mEl||{}).value || 0) || 5;
+          if (oEl && !oEl.value) oEl.value = Math.max(0, 0.8 * M).toFixed(2);
+          var factor = 1.3; if (level==='med') factor = 1.6; if (level==='high') factor = 2.0;
+          if (pEl) pEl.value = (M * factor).toFixed(2);
+          calc();
+        });
       });
 
       // Copy summary
-      const copyBtn = document.getElementById('tpe_copy');
-      copyBtn?.addEventListener('click', ()=>{
-        const text = document.getElementById('tpe_summary').textContent || '';
-        navigator.clipboard.writeText(text).then(()=>{
-          copyBtn.textContent = 'Copied'; setTimeout(()=> copyBtn.textContent = 'Copy', 1200);
+      var copyBtn = document.getElementById('tpe_copy');
+      if (copyBtn) copyBtn.addEventListener('click', function(){
+        var text = (document.getElementById('tpe_summary')||{}).textContent || '';
+        navigator.clipboard.writeText(text).then(function(){
+          copyBtn.textContent = 'Copied'; setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 1200);
         });
       });
+
+      // Optional: seed some demo numbers so the button visibly works
+      if ($('#tpe_o') && !$('#tpe_o').value) { $('#tpe_o').value = 4; $('#tpe_m').value = 8; $('#tpe_p').value = 16; }
+      // Initial compute so users see output immediately
+      calc();
     })();
   </script>
 </body>
