@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root { --ring: rgb(59 130 246 / 0.35); }
     html { scroll-behavior: smooth; }
@@ -19,12 +20,17 @@
     .hero-gradient { background: radial-gradient(900px 420px at 80% -10%, rgba(59,130,246,.18), rgba(255,255,255,0)), linear-gradient(to bottom, #fff, #f8fafc 60%, #fff); }
     .card { border: 1px solid rgba(0,0,0,.06); transition: transform .2s ease, box-shadow .2s ease; }
     .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
-    .tag { border: 1px solid rgba(0,0,0,.08); }
     .dot { width: 8px; height: 8px; border-radius: 9999px; border: 1px solid rgb(148 163 184); }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
-    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* Inputs: consistent mobile-first sizing */
+    .input {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 0.75rem;
+      border: 1px solid rgb(203 213 225);
+      padding: 0.625rem 0.75rem;
+    }
+    .input:focus { outline: none; box-shadow: 0 0 0 4px var(--ring); }
 
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -41,8 +47,7 @@
         <a href="#home" class="font-extrabold tracking-tight text-xl">Mia<span class="text-blue-600">Lavana</span></a>
 
         <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a href="#about" class="hover:text-blue-600">About</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
           <a href="#portfolio" class="hover:text-blue-600">Portfolio</a>
           <a href="#tools" class="hover:text-blue-600">Tools</a>
           <a href="#live-portfolio-impact" class="hover:text-blue-600">Live Impact</a>
@@ -61,7 +66,6 @@
       <!-- Mobile menu panel -->
       <div id="mobileMenu" class="md:hidden hidden pb-4">
         <nav class="grid gap-2 text-base font-medium pt-2">
-          <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#about">About</a>
           <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#portfolio">Portfolio</a>
           <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#tools">Tools</a>
           <a class="px-3 py-3 rounded-xl hover:bg-slate-100" href="#live-portfolio-impact">Live Impact</a>
@@ -100,23 +104,14 @@
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="py-16 md:py-20 bg-white">
-      <div class="mx-auto max-w-5xl px-4">
-        <h2 class="text-2xl sm:text-3xl font-extrabold">About</h2>
-        <p class="mt-4 text-slate-600 leading-relaxed text-[15px] sm:text-base">
-          I believe great businesses start with intention, a clear “why” that guides every system, story, and strategy.
-          My work lives at the intersection of culture and commerce: creating experiences that engage, elevate, and deliver outcomes.
-          Whether in retail, hospitality, or technology, I focus on building value that outlasts trends and translates across industries.
-        </p>
-      </div>
-    </section>
-
     <!-- Portfolio -->
     <section id="portfolio" class="py-16 md:py-20 bg-white">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-2xl sm:text-3xl font-extrabold">Portfolio</h2>
-        <p class="text-slate-600 text-[15px] sm:text-base mt-2">Explore my interactive portfolio tools. These are free demos that showcase how I help businesses grow smarter. Pro versions add integrations, automation, and executive reporting. <a href="#contact" class="text-blue-600 font-medium">Request a demo →</a></p>
+        <p class="text-slate-600 text-[15px] sm:text-base mt-2">
+          Explore my interactive portfolio tools. These are free demos that showcase how I help businesses grow smarter. Pro versions add integrations, automation, and executive reporting.
+          <a href="#contact" class="text-blue-600 font-medium">Request a demo →</a>
+        </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           <!-- Executive Sales Dashboards -->
@@ -131,7 +126,7 @@
             <div class="p-6">
               <h3 class="font-semibold">Executive Sales Dashboards</h3>
               <p class="mt-2 text-sm text-slate-600">
-                Make smarter moves faster with real-time revenue views and vendor insights that drive confident decisions.
+                Real-time revenue views and vendor insights that drive confident decisions.
               </p>
               <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">Request a demo →</a>
             </div>
@@ -149,7 +144,7 @@
             <div class="p-6">
               <h3 class="font-semibold">Consultative Sales & Compliance Training</h3>
               <p class="mt-2 text-sm text-slate-600">
-                Fuel performance with frameworks that merge product mastery and consultative selling. Always sharp, always compliant.
+                Frameworks that merge product mastery and consultative selling.
               </p>
               <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">View syllabus →</a>
             </div>
@@ -167,61 +162,53 @@
             <div class="p-6">
               <h3 class="font-semibold">Brand & Go-to-Market</h3>
               <p class="mt-2 text-sm text-slate-600">
-                Turn strategy into momentum with data-driven storytelling that builds brands people believe in.
+                Data-driven storytelling that builds brands people believe in.
               </p>
               <a href="#contact" class="inline-block mt-3 text-blue-600 font-medium">See case study →</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <!-- New section title ABOVE the ROI card -->
-          <div class="md:col-span-3">
-            <h3 class="text-xl font-semibold mb-3">ROI Calculator</h3>
-          </div>
+    <!-- Tools / Calculators -->
+    <section id="tools" class="py-16 md:py-20 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-6 flex items-center justify-between flex-wrap gap-3">
+          <h2 class="text-2xl sm:text-3xl font-extrabold">ROI & Forecast Calculators</h2>
+          <a href="#contact" class="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Unlock Pro Version</a>
+        </div>
 
-          <!-- ✅ ROI Calculator (interactive card) -->
-          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden md:col-span-3" id="roi-card">
+        <div class="grid grid-cols-1 gap-6">
+          <!-- ✅ ROI Calculator now lives here ABOVE Retail Sales Forecast -->
+          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="roi-card">
             <div class="p-6 md:p-8">
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <h3 class="font-semibold text-lg">ROI Calculator</h3>
-                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
-                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
-                </span>
-              </div>
-
+              <h3 class="font-semibold text-lg">ROI Calculator</h3>
               <p class="mt-2 text-sm text-slate-600">
                 ROI = (G − C) ÷ C × 100, where G is expected gain and C is total cost. Total cost = Upfront + (Monthly × Months).
               </p>
 
-              <div class="mt-5 grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium">Expected Gain (G)</span>
-                  <input id="roi_gain" type="number" inputmode="decimal" placeholder="e.g. 10000"
-                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="roi_gain" type="number" inputmode="decimal" placeholder="e.g. 10000" class="input" />
                 </label>
-
                 <label class="block">
                   <span class="text-sm font-medium">Upfront Cost</span>
-                  <input id="roi_upfront" type="number" inputmode="decimal" placeholder="e.g. 6000"
-                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="roi_upfront" type="number" inputmode="decimal" placeholder="e.g. 6000" class="input" />
                 </label>
-
                 <label class="block">
                   <span class="text-sm font-medium">Monthly Cost</span>
-                  <input id="roi_monthly" type="number" inputmode="decimal" placeholder="e.g. 25"
-                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="roi_monthly" type="number" inputmode="decimal" placeholder="e.g. 25" class="input" />
                 </label>
-
                 <label class="block">
                   <span class="text-sm font-medium">Months</span>
-                  <input id="roi_months" type="number" inputmode="numeric" placeholder="e.g. 12"
-                         class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="roi_months" type="number" inputmode="numeric" placeholder="e.g. 12" class="input" />
                 </label>
               </div>
 
               <div class="mt-5">
-                <button type="button" id="roi_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
-                  Calculate ROI
-                </button>
+                <button type="button" id="roi_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Calculate ROI</button>
               </div>
 
               <div id="roi_output" class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -247,60 +234,44 @@
               </details>
             </div>
           </article>
-          <!-- End ROI card -->
-        </div>
-      </div>
-    </section>
 
-    <!-- Tools / Calculators -->
-    <section id="tools" class="py-16 md:py-20 bg-slate-50">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="mb-6 flex items-center justify-between flex-wrap gap-3">
-          <h2 class="text-2xl sm:text-3xl font-extrabold">ROI & Forecast Calculators</h2>
-          <a href="#contact" class="inline-flex items-center rounded-2xl bg-slate-900 px-4 py-2.5 text-white font-semibold hover:bg-slate-800">Unlock Pro Version</a>
-        </div>
-
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Sales Forecast Calculator -->
+          <!-- Retail Sales Forecast Calculator -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="forecast-card">
             <div class="p-6 md:p-8">
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <h3 class="font-semibold text-lg">Retail Sales Forecast Calculator</h3>
-                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
-                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
-                </span>
-              </div>
-              <p class="mt-2 text-sm text-slate-600">Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.</p>
+              <h3 class="font-semibold text-lg">Retail Sales Forecast Calculator</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Project today’s totals using your current velocity. Enter open time, current time, close time, and today’s sales and transactions.
+              </p>
 
-              <!-- Added: Daily target ($) -->
-              <div class="mt-5 grid grid-cols-1 md:grid-cols-6 gap-4">
+              <!-- Perfectly aligned inputs -->
+              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium">Open time</span>
-                  <input id="sf_open" type="time" value="09:00" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_open" type="time" value="09:00" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Current time</span>
-                  <input id="sf_now" type="time" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_now" type="time" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Close time</span>
-                  <input id="sf_close" type="time" value="21:00" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_close" type="time" value="21:00" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Current sales ($)</span>
-                  <input id="sf_sales" type="number" inputmode="decimal" placeholder="e.g. 306446.64" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_sales" type="number" inputmode="decimal" placeholder="e.g. 306446.64" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Current transactions</span>
-                  <input id="sf_tx" type="number" inputmode="numeric" placeholder="e.g. 5459" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_tx" type="number" inputmode="numeric" placeholder="e.g. 5459" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Daily target ($) — optional</span>
-                  <input id="sf_target" type="number" inputmode="decimal" placeholder="e.g. 40000" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="sf_target" type="number" inputmode="decimal" placeholder="e.g. 40000" class="input" />
                 </label>
               </div>
 
-              <div class="mt-5 flex items-center gap-3">
+              <div class="mt-5 flex flex-wrap items-center gap-3">
                 <button type="button" id="sf_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Forecast day</button>
                 <button type="button" id="sf_now_btn" class="rounded-2xl border border-slate-300 px-5 py-2.5 font-semibold hover:border-slate-400">Use current local time</button>
               </div>
@@ -345,26 +316,21 @@
           <!-- Three-Point Estimating (PERT) -->
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
             <div class="p-6 md:p-8">
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
-                <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs text-slate-600">
-                  <span class="h-2 w-2 rounded-full bg-green-500"></span> Live
-                </span>
-              </div>
+              <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
               <p class="mt-2 text-sm text-slate-600">Estimate expected duration and uncertainty. Enter optimistic, most likely, and pessimistic values.</p>
 
-              <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium">Optimistic (O)</span>
-                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Most likely (M)</span>
-                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input" />
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium">Pessimistic (P)</span>
-                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 focus:outline-none focus:ring-4 focus:ring-[var(--ring)]" />
+                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input" />
                 </label>
               </div>
 
@@ -389,15 +355,16 @@
       </div>
     </section>
 
-    <!-- Live Portfolio Impact (refined) -->
+    <!-- Live Portfolio Impact -->
     <section id="live-portfolio-impact" class="relative overflow-hidden py-16 sm:py-20">
       <div class="pointer-events-none absolute inset-0 -z-10">
-        <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-500/15 via-sky-400/10 to-blue-600/10 blur-3xl"></div>
+        <div class="absolute left-1/2 top-0 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-rose-500/10 via-rose-400/10 to-red-600/10 blur-3xl"></div>
       </div>
 
       <div class="mx-auto max-w-6xl px-6">
         <div class="mb-8 flex items-center gap-3">
-          <span class="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.8)]"></span>
+          <!-- 🔴 Blinking red dot -->
+          <span class="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.8)]"></span>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Live Portfolio Impact</h2>
         </div>
 
@@ -407,21 +374,13 @@
 
             <p class="mb-4 text-sm uppercase tracking-widest text-white/60">Cumulative Impact</p>
 
-            <!-- Counter (centered, animated) -->
             <div class="live-counter text-4xl sm:text-5xl md:text-6xl font-extrabold tabular-nums tracking-tight text-white"
-                aria-live="polite"
-                data-start="120045320"
-                data-rate-per-day="45000"
-                data-decimals="2"
-                data-prefix="$"
-                data-suffix="">
+                 aria-live="polite"
+                 data-start="120045320"
+                 data-rate-per-day="45000"
+                 data-decimals="2"
+                 data-prefix="$">
               $120,045,320.00
-            </div>
-
-            <!-- Live badge with red blinking dot -->
-            <div class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/80">
-              <span class="inline-block h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
-              <span>Live</span>
             </div>
 
             <p class="mt-5 max-w-prose mx-auto text-sm leading-relaxed text-white/80">
@@ -443,18 +402,18 @@
         <p class="mt-3 text-slate-600">Email <a class="text-blue-600 font-medium" href="mailto:contact@mialavana.com">contact@mialavana.com</a> or drop a line below.</p>
         <form class="mt-8 grid gap-4 text-left" action="#" method="post">
           <label class="sr-only" for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Name" autocomplete="name" inputmode="text" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+          <input id="name" name="name" type="text" placeholder="Name" autocomplete="name" inputmode="text" class="input">
           <label class="sr-only" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+          <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" class="input">
           <label class="sr-only" for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="Message" class="w-full rounded-xl border border-slate-300 px-4 py-3 min-h-[48px] focus:outline-none focus:ring-4 focus:ring-[var(--ring)]"></textarea>
+          <textarea id="message" name="message" rows="4" placeholder="Message" class="input"></textarea>
           <button type="button" class="rounded-2xl bg-blue-600 px-6 py-3 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Send</button>
         </form>
         <p class="mt-4 text-sm text-slate-500">Or connect on <a class="text-blue-600" href="https://www.linkedin.com/">LinkedIn</a> • <a class="text-blue-600" href="https://github.com/">GitHub</a> • <a class="text-blue-600" href="https://www.instagram.com/">Instagram</a></p>
       </div>
     </section>
 
-    <!-- Testimonials (single-card carousel) -->
+    <!-- Testimonials -->
     <section id="testimonials" class="py-16 md:py-20 bg-white">
       <div class="mx-auto max-w-4xl px-4">
         <div class="flex items-end justify-between gap-4">
@@ -465,7 +424,6 @@
           </div>
         </div>
 
-        <!-- Single card holder -->
         <div class="mt-6">
           <figure id="testCard" class="card rounded-2xl bg-white p-6 md:p-8">
             <blockquote id="testQuote" class="text-slate-700 text-[15px] md:text-base leading-relaxed"></blockquote>
@@ -477,8 +435,6 @@
               </div>
             </figcaption>
           </figure>
-
-          <!-- Dots -->
           <div class="mt-5 flex items-center justify-center gap-2" id="testDots" aria-label="testimonial pagination"></div>
         </div>
 
@@ -522,13 +478,13 @@
     // --- Testimonials: single-card carousel ---
     const testimonials = [
       {
-        quote: "“Mia, to me, represents 'Mamba Mentality.' We equate those who think, or perhaps, not the most vocal, as a weakness. As the Black Mamba, she knows when to go in and say the things that need to be told. When you combine her acumen to lean in with compassion, it's a deadly mix of effectiveness + execution.”",
+        quote: "“Mia, to me, represents 'Mamba Mentality.' ... a deadly mix of effectiveness + execution.”",
         name: "Mike Kim",
         title: "Founder & Creative Director, Some Near Place",
         avatar: "https://media.licdn.com/dms/image/v2/D4D03AQHv-Si9Nox4yA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1664979704907?e=1762992000&v=beta&t=3W69JupXZ784QtXyBqs4_5vsWOIFh4eyt3aZofCZuoY"
       },
       {
-        quote: "“Mia is highly skilled at managing and studying metrics data to determine ROI across campaigns and to identify opportunities for improvement. Her marketing analytics gave us profound insight into customer preferences and trends. A pleasure to work with—her natural ability to get along with everyone was a great asset to our company.”",
+        quote: "“Mia is highly skilled at managing and studying metrics data to determine ROI across campaigns ...”",
         name: "Ken Weigel",
         title: "CEO, ABC Office Systems",
         avatar: "https://media.licdn.com/dms/image/v2/C5603AQHV_Xx45FLl1A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1553569009695?e=1762992000&v=beta&t=FbS9-2xHaIAJbUklMofFtfsIWIjSmEP2sUaLg1qTOm0"
@@ -549,7 +505,6 @@
     const testDots = document.getElementById('testDots');
     const prevBtn = document.getElementById('prevTest');
     const nextBtn = document.getElementById('nextTest');
-
     let idx = 0, autoTimer;
 
     function render(i) {
@@ -570,75 +525,40 @@
         testDots.appendChild(b);
       });
     }
-
     function next() { idx = (idx + 1) % testimonials.length; render(idx); }
     function prev() { idx = (idx - 1 + testimonials.length) % testimonials.length; render(idx); }
-
     function startAuto() { stopAuto(); autoTimer = setInterval(() => next(), 6000); }
     function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
     function restartAuto() { stopAuto(); startAuto(); }
 
     ['mouseenter','focusin','touchstart','pointerdown'].forEach(evt => testCard.addEventListener(evt, stopAuto, {passive:true}));
     ['mouseleave','focusout','touchend','pointerup'].forEach(evt => testCard.addEventListener(evt, startAuto, {passive:true}));
-
     testCard.setAttribute('tabindex', '0');
-    testCard.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { next(); restartAuto(); }
-      if (e.key === 'ArrowLeft') { prev(); restartAuto(); }
-    });
-
-    // simple swipe
-    let startX = null;
+    testCard.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { next(); restartAuto(); } if (e.key === 'ArrowLeft') { prev(); restartAuto(); }});
+    let startX=null;
     testCard.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-    testCard.addEventListener('touchend', (e) => {
-      if (startX === null) return;
-      const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); restartAuto(); }
-      startX = null;
-    }, {passive:true});
-
+    testCard.addEventListener('touchend', (e) => { if (startX===null) return; const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx)>40) { dx<0?next():prev(); restartAuto(); } startX=null; }, {passive:true});
     prevBtn?.addEventListener('click', () => { prev(); restartAuto(); });
     nextBtn?.addEventListener('click', () => { next(); restartAuto(); });
+    render(idx); startAuto();
 
-    render(idx);
-    startAuto();
-
-    // ===== Live Counter Script (vanilla JS) =====
+    // ===== Live Counter Script =====
     (function() {
       const el = document.querySelector('#live-portfolio-impact .live-counter');
       if (!el) return;
-
       const startValue = Number(el.getAttribute('data-start') || '0');
       const ratePerDay = Number(el.getAttribute('data-rate-per-day') || '0');
       const decimals = Number(el.getAttribute('data-decimals') || '2');
       const prefix = el.getAttribute('data-prefix') ?? '';
-      const suffix = el.getAttribute('data-suffix') ?? '';
-
       const perSecond = ratePerDay / 86400;
-      let startTs = performance.now();
-      let startAmount = startValue;
-
-      const nf = new Intl.NumberFormat(undefined, {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      });
-
-      function renderAmt(amount) {
-        el.textContent = `${prefix}${nf.format(amount)}${suffix ? ' ' + suffix : ''}`;
-      }
-
-      function tick(ts) {
-        const elapsed = (ts - startTs) / 1000;
-        const amount = startAmount + elapsed * perSecond;
-        renderAmt(amount);
-        requestAnimationFrame(tick);
-      }
-
-      renderAmt(startAmount);
-      requestAnimationFrame(tick);
+      let startTs = performance.now(), startAmount = startValue;
+      const nf = new Intl.NumberFormat(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      const renderAmt = (amount) => el.textContent = `${prefix}${nf.format(amount)}`;
+      const tick = (ts) => { const elapsed = (ts - startTs) / 1000; renderAmt(startAmount + elapsed * perSecond); requestAnimationFrame(tick); };
+      renderAmt(startAmount); requestAnimationFrame(tick);
     })();
 
-    // ===== ROI Calculator (minimal) =====
+    // ===== ROI Calculator =====
     (function(){
       const $ = (id) => document.getElementById(id);
       const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
@@ -684,12 +604,11 @@
 
       $('roi_calc_btn')?.addEventListener('click', calc);
       ['roi_gain','roi_upfront','roi_monthly','roi_months'].forEach(id => {
-        const el = $(id);
-        if (!el) return;
-        el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); calc(); } });
-        el.addEventListener('blur', calc);
+        const el = $(id); if (!el) return;
+        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
       });
 
+      // Demo defaults
       if ($('roi_gain')) {
         $('roi_gain').value = 10000;
         $('roi_upfront').value = 6000;
@@ -699,15 +618,23 @@
       }
     })();
 
-    // ===== Retail Sales Forecast Calculator (with target & dynamic guidance) =====
+    // ===== Retail Sales Forecast (with target & dynamic guidance) =====
     (function(){
       const $ = (id) => document.getElementById(id);
       const nfMoney = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
       const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const toMinutes = (t) => { if (!t) return null; const [h,m] = t.split(':').map(Number); return h*60 + m; };
 
-      function toMinutes(t) { if (!t) return null; const [h,m] = t.split(':').map(Number); return h*60 + m; }
+      function ensureNowIfEmpty() {
+        const nowEl = $('sf_now'); if (!nowEl.value) {
+          const now = new Date(); const hh = String(now.getHours()).padStart(2,'0'); const mm = String(now.getMinutes()).padStart(2,'0');
+          nowEl.value = `${hh}:${mm}`;
+        }
+      }
 
       function calc() {
+        ensureNowIfEmpty();
+
         const openM = toMinutes($('sf_open').value);
         const nowM = toMinutes($('sf_now').value);
         const closeM = toMinutes($('sf_close').value);
@@ -722,10 +649,10 @@
           $('sf_tph').textContent = '0.00';
           $('sf_proj_tx').textContent = '0';
           $('sf_proj_sales').textContent = nfMoney.format(0);
-          $('#sf_note').textContent = 'Enter valid times and values';
-          $('#sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
-          $('#sf_goal_wrap').classList.add('hidden');
-          $('#sf_steps').textContent = '';
+          $('sf_note').textContent = 'Enter valid times and values';
+          $('sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
+          $('sf_goal_wrap').classList.add('hidden');
+          $('sf_steps').textContent = '';
           return;
         }
 
@@ -744,22 +671,19 @@
         $('sf_proj_tx').textContent = projTx.toString();
         $('sf_proj_sales').textContent = nfMoney.format(projSales);
 
-        // Guidance & goal visuals
         if (target > 0) {
           const projectedProgress = (projSales / target) * 100;
           const gapToGoal = target - projSales;
           const requiredTPH = Math.max(0, (target - sales) / (avgTicket || 1) / (remainingH || 1));
           const progressPct = Math.max(0, Math.min(100, (sales / target) * 100));
 
-          // progress bar + line
-          $('#sf_goal_wrap').classList.remove('hidden');
-          $('#sf_goal_pct').textContent = `${progressPct.toFixed(1)}%`;
-          $('#sf_goal_bar').style.width = `${progressPct}%`;
-          $('#sf_gap_line').textContent =
+          $('sf_goal_wrap').classList.remove('hidden');
+          $('sf_goal_pct').textContent = `${progressPct.toFixed(1)}%`;
+          $('sf_goal_bar').style.width = `${progressPct}%`;
+          $('sf_gap_line').textContent =
             `Gap to goal: ${gapToGoal >= 0 ? nfMoney.format(gapToGoal) : '+' + nfMoney.format(Math.abs(gapToGoal))}` +
             (requiredTPH > 0 ? ` • Required pace: ${requiredTPH.toFixed(1)} tx/hr` : '');
 
-          // note color + copy
           let noteText = '';
           let classes = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold ';
           if (projectedProgress < 90) {
@@ -772,13 +696,12 @@
             noteText = `🚀 Forecasting ${projectedProgress.toFixed(1)}% of goal — trending ahead by ${nfMoney.format(Math.abs(gapToGoal))}.`;
             classes += 'bg-emerald-50 text-emerald-800';
           }
-          $('#sf_note').textContent = noteText;
-          $('#sf_note_wrap').className = classes;
+          $('sf_note').textContent = noteText;
+          $('sf_note_wrap').className = classes;
         } else {
-          // no target: neutral accuracy note
-          $('#sf_goal_wrap').classList.add('hidden');
-          $('#sf_note').textContent = 'Accuracy improves as more data is collected throughout the day.';
-          $('#sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
+          $('sf_goal_wrap').classList.add('hidden');
+          $('sf_note').textContent = 'Accuracy improves as more data is collected throughout the day.';
+          $('sf_note_wrap').className = 'mt-1 rounded-xl px-3 py-2 text-sm font-semibold bg-gray-50 text-gray-700';
         }
 
         const steps = [
@@ -788,12 +711,18 @@
           `Transactions/hour = Transactions ÷ Elapsed hours = ${tx} ÷ ${nfNum.format(elapsedH)} = ${nfNum.format(tph)}`,
           `Projected additional transactions = TPH × Remaining hours = ${nfNum.format(tph)} × ${nfNum.format(remainingH)} = ${nfNum.format(addTx)}`,
           `Projected total transactions ≈ ${projTx}`,
-          `Projected sales = Current sales + Avg ticket × Additional transactions = ${nfMoney.format(sales)} + ${nfMoney.format(avgTicket)} × ${nfNum.format(addTx)} = ${nfMoney.format(projSales)}`
+          `Projected sales = ${nfMoney.format(sales)} + ${nfMoney.format(avgTicket)} × ${nfNum.format(addTx)} = ${nfMoney.format(projSales)}`
         ].join('\n');
         $('sf_steps').textContent = steps;
       }
 
-      // Bind
+      // Bind: respond instantly on input for perfect UX
+      ['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e) => { if(e.key==='Enter'){e.preventDefault();} calc(); }));
+      });
+
       document.getElementById('sf_calc_btn')?.addEventListener('click', calc);
       document.getElementById('sf_now_btn')?.addEventListener('click', () => {
         const now = new Date();
@@ -803,11 +732,13 @@
         calc();
       });
 
-      ;['sf_open','sf_now','sf_close','sf_sales','sf_tx','sf_target'].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return; el.addEventListener('change', calc); el.addEventListener('blur', calc);
-        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calc(); } });
-      });
+      // Auto-set current time on load for better first-run behavior
+      (function initNow(){
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2,'0');
+        const mm = String(now.getMinutes()).padStart(2,'0');
+        document.getElementById('sf_now').value = `${hh}:${mm}`;
+      })();
     })();
 
     // ===== Three-Point Estimating (PERT) =====
@@ -847,8 +778,8 @@
 
       document.getElementById('tpe_calc_btn')?.addEventListener('click', calc);
       ['tpe_o','tpe_m','tpe_p'].forEach(id=>{
-        const el = document.getElementById(id); if(!el) return; el.addEventListener('change', calc); el.addEventListener('blur', calc);
-        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calc(); } });
+        const el = document.getElementById(id); if(!el) return;
+        ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
       });
     })();
   </script>
