@@ -321,21 +321,38 @@
           <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
             <div class="p-6 md:p-8">
               <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
-              <p class="mt-2 text-sm text-slate-600">Estimate expected duration and uncertainty. Enter optimistic, most likely, and pessimistic values.</p>
 
-              <!-- Inputs -->
-              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <!-- Entry-level friendly explainer -->
+              <p class="mt-2 text-sm text-slate-700">
+                Not sure how long something will really take? PERT helps you make a smart estimate by considering
+                <strong>best case</strong> (Optimistic), <strong>most likely</strong>, and <strong>worst case</strong> (Pessimistic).
+                You’ll get a realistic plan number and a range you can share with your team.
+              </p>
+
+              <!-- Inputs + unit selection -->
+              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Optimistic (O)</span>
-                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input" />
+                  <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input" title="Best case if things go smoothly">
+                  <p class="mt-1 text-xs text-slate-500">Best case (everything goes right)</p>
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Most likely (M)</span>
-                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input" />
+                  <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input" title="What you honestly expect">
+                  <p class="mt-1 text-xs text-slate-500">Your honest expectation</p>
                 </label>
                 <label class="block">
                   <span class="text-sm font-medium label-one-line">Pessimistic (P)</span>
-                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input" />
+                  <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input" title="Worst case with delays/risks">
+                  <p class="mt-1 text-xs text-slate-500">Worst case (delays, blockers)</p>
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium label-one-line">Units</span>
+                  <select id="tpe_unit" class="input">
+                    <option value="days" selected>Days</option>
+                    <option value="hours">Hours</option>
+                  </select>
+                  <p class="mt-1 text-xs text-slate-500">Choose the time unit for O/M/P</p>
                 </label>
               </div>
 
@@ -351,16 +368,31 @@
                 <button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Estimate time</button>
               </div>
 
-              <!-- Outputs -->
+              <!-- Outputs show unit -->
               <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div><div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div><div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">90% range</div><div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Signal</div><div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div>
+                  <div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div>
+                  <div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">90% range</div>
+                  <div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div>
+                </div>
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <div class="text-xs uppercase tracking-wider text-slate-500">Signal</div>
+                  <div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div>
+                </div>
               </div>
 
-              <!-- Plain-English summary + copy -->
-              <div class="mt-4 rounded-xl border border-slate-200 p-3 bg-slate-50 flex items-start justify-between gap-3">
+              <!-- Plain-English summary + copy (includes unit in Plan) -->
+              <p class="mt-3 text-xs text-slate-500">
+                We’ll calculate your expected time and a 90% range so you can set a realistic plan and buffer.
+              </p>
+              <div class="mt-2 rounded-xl border border-slate-200 p-3 bg-slate-50 flex items-start justify-between gap-3">
                 <div id="tpe_summary" class="text-sm text-slate-700">
                   Enter O/M/P to see an easy summary.
                 </div>
@@ -397,9 +429,11 @@
 
             <p class="mb-4 text-sm uppercase tracking-widest text-white/60">Cumulative Impact</p>
 
+            <!-- NEW: base + daily growth config -->
             <div class="live-counter text-4xl sm:text-5xl md:text-6xl font-extrabold tabular-nums tracking-tight text-white"
                  aria-live="polite"
-                 data-start="120045320"
+                 data-base="120045320"           <!-- value at start-date 00:00 -->
+                 data-start-date="2025-01-01"    <!-- change if needed -->
                  data-rate-per-day="45000"
                  data-decimals="2"
                  data-prefix="$">
@@ -568,20 +602,37 @@
     nextBtn?.addEventListener('click', () => { next(); restartAuto(); });
     render(idx); startAuto();
 
-    // ===== Live Counter Script =====
+    // ===== Live Counter Script (adds $45k per day) =====
     (function() {
       const el = document.querySelector('#live-portfolio-impact .live-counter');
       if (!el) return;
-      const startValue = Number(el.getAttribute('data-start') || '0');
-      const ratePerDay = Number(el.getAttribute('data-rate-per-day') || '0');
+
+      const base = Number(el.getAttribute('data-base') || '0');            // value at start-date 00:00 (local)
+      const startDateStr = el.getAttribute('data-start-date') || '2025-01-01';
+      const ratePerDay = Number(el.getAttribute('data-rate-per-day') || '45000');
       const decimals = Number(el.getAttribute('data-decimals') || '2');
       const prefix = el.getAttribute('data-prefix') ?? '';
-      const perSecond = ratePerDay / 86400;
-      let startTs = performance.now(), startAmount = startValue;
+
       const nf = new Intl.NumberFormat(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-      const renderAmt = (amount) => el.textContent = `${prefix}${nf.format(amount)}`;
-      const tick = (ts) => { const elapsed = (ts - startTs) / 1000; renderAmt(startAmount + elapsed * perSecond); requestAnimationFrame(tick); };
-      renderAmt(startAmount); requestAnimationFrame(tick);
+
+      function computeNowValue() {
+        const now = new Date();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // local midnight
+        const [Y,M,D] = startDateStr.split('-').map(Number);
+        const epoch = new Date(Y, (M-1), D); // local midnight of start date
+
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const fullDays = Math.floor((todayStart - epoch) / msPerDay);
+        const fractionToday = (now - todayStart) / msPerDay;
+
+        return base + (fullDays * ratePerDay) + (fractionToday * ratePerDay);
+      }
+
+      function render() {
+        el.textContent = prefix + nf.format(computeNowValue());
+        requestAnimationFrame(render);
+      }
+      render();
     })();
 
     // ===== ROI Calculator =====
@@ -767,10 +818,15 @@
       })();
     })();
 
-    // ===== Three-Point Estimating (PERT) with presets & summary =====
+    // ===== Three-Point Estimating (PERT) with Units, presets & summary =====
     (function(){
       const $ = (id) => document.getElementById(id);
       const nfNum = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const unitText = () => (document.getElementById('tpe_unit')?.value === 'hours' ? 'hours' : 'days');
+
+      function renderWithUnit(val) {
+        return `${nfNum.format(val)} ${unitText()}`;
+      }
 
       function calc(){
         const O = Number($('tpe_o').value || 0);
@@ -790,26 +846,27 @@
         const low = E - 1.645 * SD; // ~90% CI
         const high = E + 1.645 * SD;
 
-        $('tpe_e').textContent = nfNum.format(E);
-        $('tpe_sd').textContent = nfNum.format(SD);
-        $('tpe_ci').textContent = `${nfNum.format(low)}–${nfNum.format(high)}`;
+        $('tpe_e').textContent = renderWithUnit(E);
+        $('tpe_sd').textContent = renderWithUnit(SD);
+        $('tpe_ci').textContent = `${nfNum.format(low)}–${nfNum.format(high)} ${unitText()}`;
         $('tpe_signal').textContent = SD / (E || 1) < 0.25 ? 'Tight estimate' : 'Wide estimate';
 
         const steps = [
-          `Expected E = (O + 4M + P) ÷ 6 = (${O} + 4×${M} + ${P}) ÷ 6 = ${nfNum.format(E)}`,
-          `Std. deviation = (P − O) ÷ 6 = (${P} − ${O}) ÷ 6 = ${nfNum.format(SD)}`,
-          `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(1.645*SD)} = ${nfNum.format(low)} to ${nfNum.format(high)}`
+          `Expected E = (O + 4M + P) ÷ 6 = (${O} + 4×${M} + ${P}) ÷ 6 = ${nfNum.format(E)} ${unitText()}`,
+          `Std. deviation = (P − O) ÷ 6 = (${P} − ${O}) ÷ 6 = ${nfNum.format(SD)} ${unitText()}`,
+          `90% range ≈ E ± 1.645 × SD = ${nfNum.format(E)} ± ${nfNum.format(1.645*SD)} = ${nfNum.format(low)}–${nfNum.format(high)} ${unitText()}`
         ].join('\n');
         $('tpe_steps').textContent = steps;
         summarize();
       }
 
-      // Plain-English summary + copy
+      // Plain-English summary + copy (includes units)
       function summarize(){
         const O = Number($('tpe_o').value || 0);
         const M = Number($('tpe_m').value || 0);
         const P = Number($('tpe_p').value || 0);
         const sEl = $('tpe_summary');
+        const u = unitText();
         if (!O || !M || !P || P < O) {
           sEl.textContent = 'Enter valid O/M/P (P should be ≥ O).';
           return;
@@ -819,12 +876,12 @@
         const low = E - 1.645 * SD, high = E + 1.645 * SD;
         const buffer = Math.max(0, high - M);
         sEl.textContent =
-          `Plan ~${nfNum.format(E)} (expected). 90% range: ${nfNum.format(low)}–${nfNum.format(high)}. ` +
-          `Use a buffer of ~${nfNum.format(buffer)} beyond your most likely.`;
+          `Plan ~${nfNum.format(E)} ${u} (expected). 90% range: ${nfNum.format(low)}–${nfNum.format(high)} ${u}. ` +
+          `Use a buffer of ~${nfNum.format(buffer)} ${u} beyond your most likely.`;
       }
 
       // Event bindings
-      ['tpe_o','tpe_m','tpe_p'].forEach(id=>{
+      ['tpe_o','tpe_m','tpe_p','tpe_unit'].forEach(id=>{
         const el = document.getElementById(id); if(!el) return;
         ['input','change','blur','keydown'].forEach(evt => el.addEventListener(evt, (e)=>{ if(e.key==='Enter'){e.preventDefault();} calc(); }));
       });
