@@ -221,59 +221,101 @@
           </article>
 
           <!-- Three-Point Estimating (PERT/Triangular) -->
-          <article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
-            <div class="p-6 md:p-8">
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
-              </div>
-              <p class="mt-2 text-sm text-slate-700">
-                Not sure how long something will really take? PERT helps you make a smart estimate by considering
-                <strong>best case</strong> (Optimistic), <strong>most likely</strong>, and <strong>worst case</strong> (Pessimistic).
-                You’ll get a realistic plan number and a range you can share with your team.
-              </p>
+<article class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden" id="tpe-card">
+  <div class="p-6 md:p-8">
+    <div class="flex items-center justify-between flex-wrap gap-3">
+      <h3 class="font-semibold text-lg">Time Estimation: Three-Point (PERT)</h3>
+    </div>
 
-              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-                <label class="block"><span class="text-sm font-medium label-one-line">Optimistic (O)</span><input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input"><p class="mt-1 text-xs text-slate-500">Best case (everything goes right)</p></label>
-                <label class="block"><span class="text-sm font-medium label-one-line">Most likely (M)</span><input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input"><p class="mt-1 text-xs text-slate-500">Your honest expectation</p></label>
-                <label class="block"><span class="text-sm font-medium label-one-line">Pessimistic (P)</span><input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input"><p class="mt-1 text-xs text-slate-500">Worst case (delays, blockers)</p></label>
-                <label class="block"><span class="text-sm font-medium label-one-line">Units</span>
-                  <select id="tpe_unit" class="input"><option value="days">Days</option><option value="hours" selected>Hours</option></select>
-                  <p class="mt-1 text-xs text-slate-500">Choose the time unit for O/M/P</p>
-                </label>
-                <label class="block"><span class="text-sm font-medium label-one-line">Method</span>
-                  <select id="tpe_method" class="input"><option value="pert" selected>PERT (weighted)</option><option value="triangular">Triangular (simple average)</option></select>
-                  <p class="mt-1 text-xs text-slate-500">PERT weights M (4×). Triangular averages O/M/P equally.</p>
-                </label>
-              </div>
+    <p class="mt-2 text-sm text-slate-700">
+      Not sure how long something will really take? PERT helps you make a smart estimate by considering
+      <strong>best case</strong> (Optimistic), <strong>most likely</strong>, and <strong>worst case</strong> (Pessimistic).
+      You’ll get a realistic plan number and a range you can share with your team.
+    </p>
 
-              <div class="mt-3 flex flex-wrap items-center gap-2">
-                <span class="text-xs text-slate-500">Quick risk:</span>
-                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="low">Low</button>
-                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="med">Med</button>
-                <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="high">High</button>
-              </div>
+    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+      <label class="block">
+        <span class="text-sm font-medium label-one-line">Optimistic (O)</span>
+        <input id="tpe_o" type="number" inputmode="decimal" placeholder="e.g. 3" class="input">
+        <p class="mt-1 text-xs text-slate-500">Best case (everything goes right)</p>
+      </label>
 
-              <div class="mt-5"><button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">Estimate time</button></div>
+      <label class="block">
+        <span class="text-sm font-medium label-one-line">Most likely (M)</span>
+        <input id="tpe_m" type="number" inputmode="decimal" placeholder="e.g. 5" class="input">
+        <p class="mt-1 text-xs text-slate-500">Your honest expectation</p>
+      </label>
 
-              <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div><div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div><div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">90% range</div><div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div></div>
-                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs uppercase tracking-wider text-slate-500">Signal</div><div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div></div>
-              </div>
+      <label class="block">
+        <span class="text-sm font-medium label-one-line">Pessimistic (P)</span>
+        <input id="tpe_p" type="number" inputmode="decimal" placeholder="e.g. 10" class="input">
+        <p class="mt-1 text-xs text-slate-500">Worst case (delays, blockers)</p>
+      </label>
 
-              <p class="mt-3 text-xs text-slate-500">We’ll calculate your expected time and a 90% range so you can set a realistic plan and buffer.</p>
-              <div class="mt-2 rounded-xl border border-slate-200 p-3 bg-slate-50 flex items-start justify-between gap-3">
-                <div id="tpe_summary" class="text-sm text-slate-700">Enter O/M/P to see an easy summary.</div>
-                <button id="tpe_copy" type="button" class="shrink-0 rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs">Copy</button>
-              </div>
+      <label class="block">
+        <span class="text-sm font-medium label-one-line">Units</span>
+        <select id="tpe_unit" class="input">
+          <option value="days">Days</option>
+          <option value="hours" selected>Hours</option>
+        </select>
+        <p class="mt-1 text-xs text-slate-500">Choose the time unit for O/M/P</p>
+      </label>
 
-              <details class="mt-6 group"><summary class="cursor-pointer text-sm text-slate-600 group-open:text-slate-800 font-medium">Show calculation steps</summary><pre id="tpe_steps" class="mt-3 bg-slate-50 rounded-xl p-4 text-[13px] overflow-x-auto border border-slate-200"></pre></details>
-            </div>
-          </article>
-        </div>
+      <label class="block">
+        <span class="text-sm font-medium label-one-line">Method</span>
+        <select id="tpe_method" class="input">
+          <option value="pert" selected>PERT (weighted)</option>
+          <option value="triangular">Triangular (simple average)</option>
+        </select>
+        <p class="mt-1 text-xs text-slate-500">PERT weights M (4×). Triangular averages O/M/P equally.</p>
+      </label>
+    </div>
+
+    <div class="mt-3 flex flex-wrap items-center gap-2">
+      <span class="text-xs text-slate-500">Quick risk:</span>
+      <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="low">Low</button>
+      <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="med">Med</button>
+      <button type="button" class="rounded-xl border border-slate-300 px-3 py-1.5 text-sm" data-risk="high">High</button>
+    </div>
+
+    <div class="mt-5">
+      <button type="button" id="tpe_calc_btn" class="rounded-2xl bg-blue-600 px-5 py-2.5 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[var(--ring)]">
+        Estimate time
+      </button>
+    </div>
+
+    <div id="tpe_output" class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500">Expected (E)</div>
+        <div id="tpe_e" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div>
       </div>
-    </section>
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500">Std. deviation</div>
+        <div id="tpe_sd" class="mt-1 text-2xl font-extrabold tabular-nums">0.00</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500">90% range</div>
+        <div id="tpe_ci" class="mt-1 text-2xl font-extrabold tabular-nums">0.00–0.00</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <div class="text-xs uppercase tracking-wider text-slate-500">Signal</div>
+        <div id="tpe_signal" class="mt-1 text-sm font-semibold text-slate-700">Enter values to evaluate</div>
+      </div>
+    </div>
+
+    <p class="mt-3 text-xs text-slate-500">We’ll calculate your expected time and a 90% range so you can set a realistic plan and buffer.</p>
+
+    <div class="mt-2 rounded-xl border border-slate-200 p-3 bg-slate-50 flex items-start justify-between gap-3">
+      <div id="tpe_summary" class="text-sm text-slate-700">Enter O/M/P to see an easy summary.</div>
+      <button id="tpe_copy" type="button" class="shrink-0 rounded-lg border border-slate-300 px-2.5 py-1.5 text-xs">Copy</button>
+    </div>
+
+    <details class="mt-6 group">
+      <summary class="cursor-pointer text-sm text-slate-600 group-open:text-slate-800 font-medium">Show calculation steps</summary>
+      <pre id="tpe_steps" class="mt-3 bg-slate-50 rounded-xl p-4 text-[13px] overflow-x-auto border border-slate-200"></pre>
+    </details>
+  </div>
+</article>
 
     <!-- Live Portfolio Impact -->
     <section id="live-portfolio-impact" class="relative overflow-hidden py-16 sm:py-20">
